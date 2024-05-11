@@ -1,0 +1,15 @@
+[project]
+name = "BienLocation"
+version = "0.1.0"
+description = "Free online rental property management service for private landlords."
+authors = [
+    {name = "Macktireh", email = "mack.abdisoubaneh@gmail.com"},
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = []
+
+
+[tool.pdm]
+distribution = false
