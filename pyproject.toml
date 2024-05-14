@@ -39,12 +39,12 @@ collectstatic = "python manage.py collectstatic"
 loaddata = "python manage.py loaddata"
 dumpdata = "python manage.py dumpdata"
 stripe_sync = "python manage.py djstripe_sync_models"
-tailwind = "npx tailwindcss -i ./static/src/input.css -o ./static/src/output.css --watch"
+tailwind = "pnpm run tailwind"
 rufffix = "ruff --fix --exit-zero ."
 ruffformat = "ruff format ."
 ruffcheck = "ruff check ."
 mmm = {composite = ["makemigrations", "migrate"]}
-dev = {composite = ["migrate", "start"]}
+dev = {composite = ["tailwind", "start"]}
 ruff = {composite = ["rufffix", "ruffformat", "ruffcheck"]}
 
 
