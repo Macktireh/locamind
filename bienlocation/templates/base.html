@@ -13,9 +13,11 @@
   {% block css %} {% endblock css %}
 </head>
 
-<body>
+<body class="size-full bg-base-100">
+  {% include 'partials/tailwind-debug.html' %}
+  {% include 'partials/navbar.html' %}
   <header class="header">
-    {% block navbar %} {% endblock navbar %}
+    {% block hearder %} {% endblock hearder %}
   </header>
 
   <main>
