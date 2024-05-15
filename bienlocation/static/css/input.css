@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .debug {
+    @apply border-2 bg-red-900 sticky top-0 z-50 py-3 w-full flex justify-center items-center text-white;
+  }
+}
