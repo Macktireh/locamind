@@ -8,11 +8,12 @@ DEBUG = env.bool("DEBUG", default=True)
 
 DEVELOP_APPS = [
     "django_extensions",
-    # "debug_toolbar",
+    "django_browser_reload",
 ]
 
 INSTALLED_APPS.extend(DEVELOP_APPS)  # noqa: F405
-MIDDLEWARE.extend(["debug_toolbar.middleware.DebugToolbarMiddleware"])  # noqa: F405
+# MIDDLEWARE.extend(["debug_toolbar.middleware.DebugToolbarMiddleware"])  # noqa: F405
+MIDDLEWARE.extend(["django_browser_reload.middleware.BrowserReloadMiddleware"])  # noqa: F405
 
 
 # Database
