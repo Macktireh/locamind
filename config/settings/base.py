@@ -15,7 +15,9 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 
 # Application definition
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "bienlocation.apps.core.apps.CoreConfig",
+]
 
 THIRD_PARTY_APPS = []
 
@@ -107,3 +109,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "core.User"
