@@ -2,8 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lobster";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Lobster/Lobster-Regular.ttf") format("truetype");
+}
+
 @layer base {
-  .debug {
-    @apply border-2 bg-red-900 sticky top-0 z-50 py-3 w-full flex justify-center items-center text-white;
+  html {
+    font-family: "Roboto", system-ui, sans-serif !important;
   }
+}
+
+.alert-info {
+  border-color: var(--fallback-in, oklch(var(--in) / 0.2));
+  --tw-text-opacity: 1;
+  color: var(--fallback-inc, oklch(var(--inc) / var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-in, oklch(var(--in) / 1));
+  --alert-bg-mix: var(--fallback-b1, oklch(var(--b1) / 1));
+}
+
+.alert-success {
+  border-color: var(--fallback-su, oklch(var(--su) / 0.2));
+  --tw-text-opacity: 1;
+  color: var(--fallback-suc, oklch(var(--suc) / var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-su, oklch(var(--su) / 1));
+  --alert-bg-mix: var(--fallback-b1, oklch(var(--b1) / 1));
+}
+
+.alert-warning {
+  border-color: var(--fallback-wa, oklch(var(--wa) / 0.2));
+  --tw-text-opacity: 1;
+  color: var(--fallback-wac, oklch(var(--wac) / var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-wa, oklch(var(--wa) / 1));
+  --alert-bg-mix: var(--fallback-b1, oklch(var(--b1) / 1));
+}
+
+.alert-error {
+  border-color: var(--fallback-er, oklch(var(--er) / 0.2));
+  --tw-text-opacity: 1;
+  color: var(--fallback-erc, oklch(var(--erc) / var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-er, oklch(var(--er) / 1));
+  --alert-bg-mix: var(--fallback-b1, oklch(var(--b1) / 1));
+}
+
+.debug {
+  @apply border-2 bg-red-900 sticky top-0 z-50 py-3 w-full flex justify-center items-center text-white;
 }

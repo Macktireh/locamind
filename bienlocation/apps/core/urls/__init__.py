@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import include, path
 
-from bienlocation.apps.core.views.index import IndexView
+app_name = "core"
 
 urlpatterns = [
-    path('', IndexView.as_view(), name="index"),
+    path(route="", view=include("bienlocation.apps.core.urls.web")),
 ]

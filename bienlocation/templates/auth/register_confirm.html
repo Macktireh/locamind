@@ -1,0 +1,21 @@
+{% extends 'base/base_without_navbar.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+  {% translate 'Registration successful. Please activate your account.' %}
+{% endblock %}
+
+{% block content %}
+  <div class="size-full md:max-w-xl m-auto bg-base-100 flex flex-col gap-4 p-2 md:p-6" style="border-radius: 1rem;">
+    <div class="flex flex-col items-center text-center gap-4 mb-4">
+      {% comment %} {% include 'partials/icon.html' with name='envelope' size='170' %} {% endcomment %}
+      <img src="{% static 'images/openletter.gif' %}" alt="" width="200" style="border-radius: 16px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-bottom: 1rem;" />
+      <h1 class="text-xl md:text-4xl my-2">{% translate 'Registration successful. Please activate your account.' %}</h1>
+      <p class="leading-7">
+        {% translate 'Thank you for registering. We have sent you an email. Please follow the instructions to activate your account. You will be able to login once your account is activated.' %}
+      </p>
+    </div>
+  </div>
+{% endblock %}

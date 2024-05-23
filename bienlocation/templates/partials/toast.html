@@ -1,0 +1,15 @@
+<div x-data="{ dismissedToast: false }" x-show="!dismissedToast" x-init="setTimeout(() => dismissedToast = true, 5000)">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="toast toast-top toast-end !rounded-sm z-50">
+        <div class="alert alert-{{ message.tags }}">
+          {% include 'partials/icon.html' with name=message.tags %}
+          <span>{{ message }}.</span>
+          <div style="cursor: pointer;" @click="dismissedToast = true">
+            {% include 'partials/icon.html' with name='close' %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>

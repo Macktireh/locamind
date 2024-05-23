@@ -4,6 +4,7 @@ from django.views import View
 
 
 class IndexView(View):
+    template_name = "index.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        return render(request, "index.html")
+        return render(request, template_name=self.template_name)

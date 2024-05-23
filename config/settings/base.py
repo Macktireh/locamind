@@ -17,6 +17,7 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 
 LOCAL_APPS = [
     "bienlocation.apps.core.apps.CoreConfig",
+    "bienlocation.apps.common.apps.CommonConfig",
 ]
 
 THIRD_PARTY_APPS = []

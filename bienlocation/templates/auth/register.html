@@ -1,0 +1,36 @@
+{% extends 'base/base_without_navbar.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+  {% translate 'Register for free with BienLocation and start managing your properties.' %}
+{% endblock %}
+
+{% block content %}
+  <div class="size-full md:max-w-xl m-auto bg-base-100 flex flex-col gap-4 p-2 md:p-6" style="border-radius: 1rem;">
+    <div class="flex flex-col items-center text-center gap-4 mb-4">
+      <a href="{% url 'core:index' %}"><img src="{% static 'images/logo-rounded.png' %}" alt="logo BienLocation" class="w-16 lg:w-24 m-auto" /></a>
+      <h1 class="text-xl md:text-2xl">{% translate 'Register for free with BienLocation and start managing your properties.' %}</h1>
+    </div>
+    <form method="post" class="flex flex-col gap-4 p-4">
+      {% csrf_token %}
+      {% include 'partials/input_form.html' with field=form.first_name icon='user' errors=form.first_name.errors id_for_label=form.first_name.id_for_label %}
+      {% include 'partials/input_form.html' with field=form.last_name icon='user' errors=form.last_name.errors id_for_label=form.last_name.id_for_label %}
+      {% include 'partials/input_form.html' with field=form.email icon='email' errors=form.email.errors id_for_label=form.email.id_for_label %}
+      {% include 'partials/input_form.html' with field=form.password1 icon='key' errors=form.password1.errors id_for_label=form.password1.id_for_label %}
+      {% include 'partials/input_form.html' with field=form.password2 icon='key' errors=form.password2.errors id_for_label=form.password2.id_for_label %}
+      <button type="submit" class="btn btn-primary">{% translate "Register" %}</button>
+    </form>
+    <div class="divider">OR</div>
+    <a href="#" class="btn btn-outline gap-2">
+      <img src="{% static 'svg/google.svg' %}" alt="logo Google" class="w-8" />
+      {% translate 'Register with Google' %}
+    </a>
+    <div class="flex flex-col gap-4 p-2 mt-2">
+      <p class="text-center text-md">
+        {% translate 'Already have an account?' %} <a href="{% url 'core:login' %}" class="link">{% translate 'Login' %}</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

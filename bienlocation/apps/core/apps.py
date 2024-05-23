@@ -2,6 +2,6 @@ from django.apps import AppConfig
 
 
 class CoreConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'bienlocation.apps.core'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "bienlocation.apps.core"
     verbose_name = "BienLocation"

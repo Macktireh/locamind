@@ -5,7 +5,12 @@ module.exports = {
     "./bienlocation/static/**/*.{html,js,dj}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ["Roboto", "sans-serif"],
+        oswald: ["Lobster", "sans-serif"],
+      },
+    },
   },
   plugins: [
     require('daisyui'),
