@@ -3,7 +3,7 @@ from typing import Any
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from bienlocation.apps.core.validators import (
+from bienlocation.apps.common.validators import (
     PasswordFieldValidator,
     RequireFieldValidator,
     password_confirmation_validator,
