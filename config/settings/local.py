@@ -2,6 +2,8 @@ import os
 
 from config.env import BASE_DIR, env
 from config.settings.base import *  # noqa: F403
+from config.settings.base import INSTALLED_APPS, MIDDLEWARE
+from config.settings.packages.celery import *  # noqa: F403
 
 DEBUG = env.bool("DEBUG", default=True)
 
@@ -9,36 +11,34 @@ DEBUG = env.bool("DEBUG", default=True)
 DEVELOP_APPS = [
     "django_extensions",
     "django_browser_reload",
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+INSTALLED_APPS.extend(DEVELOP_APPS)
 
-INSTALLED_APPS.extend(DEVELOP_APPS)  # noqa: F405
-# MIDDLEWARE.extend(["debug_toolbar.middleware.DebugToolbarMiddleware"])  # noqa: F405
-MIDDLEWARE.extend(["django_browser_reload.middleware.BrowserReloadMiddleware"])  # noqa: F405
+DEVELOP_MIDDLEWARE = [
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+]
+MIDDLEWARE.extend(DEVELOP_MIDDLEWARE)
 
 
 # Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+TYPE_DATABASE = env.str("TYPE_DATABASE", default="sqlite")
+if TYPE_DATABASE == "postgres":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("DB_NAME"),
+            "USER": env("DB_USER"),
+            "PASSWORD": env("DB_PASSWORD"),
+            "HOST": env("DB_HOST"),
+            "PORT": env("DB_PORT"),
+        }
     }
-}
 
 # Email settings
-EMAIL_BACKEND = "developmentEmailDashboard.emailbackend.developmentEmailBackend"
-DEVELOPMENT_EMAIL_DASHBOARD_SEND_EMAIL_NOTIFICATION = True
-
-
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-    },
-    # "default": {
-    #     "BACKEND": "django.core.cache.backends.redis.RedisCache",
-    #     "LOCATION": "redis://127.0.0.1:6379",
-    # }
-}
+EMAIL_HOST = env("EMAIL_HOST", default="mailpit")
+EMAIL_PORT = 1025
 
 
 MEDIA_URL = "/mediafiles/"
@@ -54,16 +54,8 @@ STORAGES = {
 }
 
 
-# Django-debug-toolbar
-# hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-# INTERNAL_IPS = INTERNAL_IPS = [ip[:-1] + "1" for ip in ips] + ["127.0.0.1"]
-# mimetypes.add_type("application/javascript", ".js", True)
-
-# DEBUG_TOOLBAR_PATCH_SETTINGS = False
-
-# DEBUG_TOOLBAR_CONFIG = {
-#     "INTERCEPT_REDIRECTS": False,
-#     "SHOW_TOOLBAR_CALLBACK": lambda request: True,
-#     "INSERT_BEFORE": "</head>",
-#     "RENDER_PANELS": True,
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    },
+}
