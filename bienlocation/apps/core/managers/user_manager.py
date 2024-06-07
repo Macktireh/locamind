@@ -27,7 +27,12 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
+        extra_fields.setdefault("email_confirmed", True)
 
+        if extra_fields.get("email_confirmed") is not True:
+            raise ValueError(_("Superuser must have email_confirmed=True."))
+        if extra_fields.get("is_active") is not True:
+            raise ValueError(_("Superuser must have is_active=True."))
         if extra_fields.get("is_staff") is not True:
             raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:

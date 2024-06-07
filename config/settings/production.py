@@ -6,7 +6,7 @@ DEBUG = env.bool("DEBUG", default=False)
 
 DATABASES = {
     "default": {
-        "ENGINE": env("DB_ENGINE"),
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": env("DB_NAME"),
         "USER": env("DB_USER"),
         "PASSWORD": env("DB_PASSWORD"),

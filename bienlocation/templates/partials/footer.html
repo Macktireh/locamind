@@ -9,7 +9,9 @@
       <a class="link link-hover">{% translate 'Privacy' %}</a>
     </nav>
     <aside>
-      <p>Copyright © {% now 'Y' %} - {% translate 'All right reserved by' %} BienLocation</p>
+      <p>
+        Copyright ©{% now 'Y' %}-{% translate 'All right reserved by' %} {{ APP_NAME }}
+      </p>
     </aside>
   </footer>
 {% else %}
@@ -44,7 +46,9 @@
       </div>
     </nav>
     <aside>
-      <p>Copyright © {% now 'Y' %} - {% translate 'All right reserved by' %} BienLocation</p>
+      <p>
+        Copyright ©{% now 'Y' %}-{% translate 'All right reserved by' %} {{ APP_NAME }}
+      </p>
     </aside>
   </footer>
 {% endif %}

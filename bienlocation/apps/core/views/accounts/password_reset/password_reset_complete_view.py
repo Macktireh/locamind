@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.views import View
 
 
-class RegisterConfirmView(View):
-    template_name = "auth/register_confirm.html"
+class PasswordResetCompleteView(View):
+    template_name = "accounts/password_reset/password_reset_complete.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
         context = {}

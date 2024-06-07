@@ -12,7 +12,12 @@ class User(BaseModel, AbstractUser):
     first_name = models.CharField(_("first name"), max_length=150)
     last_name = models.CharField(_("last name"), max_length=150)
     email = models.EmailField(_("email address"), unique=True, db_index=True)
-    
+    email_confirmed = models.BooleanField(default=False)
+    accepted_terms = models.BooleanField(
+        _("accepted terms"),
+        default=False,
+        help_text=_("Designates whether this user has accepted the terms and conditions."),
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [

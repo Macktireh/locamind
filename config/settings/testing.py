@@ -6,12 +6,19 @@ from config.settings.base import *  # noqa: F403
 DEBUG = env.bool("DEBUG", default=False)
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+# Database
+TYPE_DATABASE = env.str("TYPE_DATABASE", default="sqlite")
+if TYPE_DATABASE == "postgres":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env("DB_NAME"),
+            "USER": env("DB_USER"),
+            "PASSWORD": env("DB_PASSWORD"),
+            "HOST": env("DB_HOST"),
+            "PORT": env("DB_PORT"),
+        }
     }
-}
 
 
 CACHES = {

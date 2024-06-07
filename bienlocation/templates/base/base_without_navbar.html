@@ -4,22 +4,28 @@
 <html lang="fr" data-theme="night">
   <head>
     {% include 'partials/metadata.html' %}
-    <title>{% block title %}{% endblock %} - BienLocation</title>
+    <title>
+      {% block title %}
+      {% endblock %}- {{ APP_NAME }}
+    </title>
     <link rel="stylesheet" href="{% static 'css/output.css' %}" />
-    {% block css %}{% endblock %}
+    {% block css %}
+    {% endblock %}
   </head>
 
   <body class="size-full min-h-screen bg-base-100">
-    {% include 'partials/toast.html' %} 
+    {% include 'partials/toast.html' %}
     {% comment %} {% include 'partials/tailwind-debug.html' %} {% endcomment %}
 
     <main class="size-full min-h-svh my-auto p-2 md:p-6 flex justify-center items-center">
-      {% block content %}{% endblock %}
+      {% block content %}
+      {% endblock %}
     </main>
 
     {% include 'partials/footer.html' with type='base' %}
 
     {% include 'partials/js.html' %}
-    {% block js %}{% endblock %}
+    {% block js %}
+    {% endblock %}
   </body>
 </html>

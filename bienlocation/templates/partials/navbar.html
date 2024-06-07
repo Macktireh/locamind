@@ -5,9 +5,9 @@
   <div class="flex-1 mr-2">
     <ul class="menu menu-horizontal" style="padding-left: 0; padding-right: 0;">
       <li>
-        <a href="{% url 'core:index' %}" class="normal-case text-xl">
-          <img src="{% static 'images/logo-rounded.png' %}" class="w-8" alt="logo BienLocation" />
-          <span class="hidden md:inline">BienLocation</span>
+        <a href="{% url 'index' %}" class="normal-case text-xl">
+          <img src="{% static 'images/logo-rounded.png' %}" class="w-8" alt="logo {{ APP_NAME }}" />
+          <span class="hidden md:inline">{{ APP_NAME }}</span>
         </a>
       </li>
     </ul>
@@ -23,10 +23,10 @@
     <ul class="menu menu-horizontal text-lg gap-1">
       <!-- Navbar menu content here -->
       <li>
-        <a href="{% url 'core:index' %}">{% translate 'Home' %}</a>
+        <a href="{% url 'index' %}">{% translate 'Home' %}</a>
       </li>
       <li>
-        <a href="{% url 'core:register_confirm' %}">{% translate 'Services' %}</a>
+        <a href="{% url 'accounts:password_reset_complete' %}">{% translate 'Services' %}</a>
       </li>
       <li>
         <a>{% translate 'Pricing' %}</a>
@@ -35,10 +35,10 @@
         <a>{% translate 'Blog' %}</a>
       </li>
       <li>
-        <a href="{% url 'core:login' %}" class="btn btn-ghost">{% translate 'Login' %}</a>
+        <a href="{% url 'accounts:login' %}" class="btn btn-ghost">{% translate 'Login' %}</a>
       </li>
       <li>
-        <a href="{% url 'core:register' %}" class="btn btn-primary">{% translate 'Register' %}</a>
+        <a href="{% url 'accounts:register' %}" class="btn btn-primary">{% translate 'Register' %}</a>
       </li>
     </ul>
   </div>

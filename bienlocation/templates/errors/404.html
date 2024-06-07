@@ -1,0 +1,127 @@
+{% extends 'base/base_empty.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+  {% translate 'Page not found' %}
+{% endblock %}
+
+{% block css %}
+<style>
+  body { margin: 0; padding: 0; }
+  .Error404 {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, #2E47C7, #F1F1F1);
+  }
+  .Error404 #error404 {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    left: 10%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("https://raw.githubusercontent.com/Macktireh/Media/main/images/404.png") #151729;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+  }
+  
+  .Error404 #error404 .content {
+    text-align: center;
+  }
+  
+  .Error404 #error404 .content h2 {
+    font-size: 8em;
+    color: #fff;
+    line-height: 1em;
+    margin-bottom: 1.5rem;
+  }
+  .Error404 #error404 .content h4 {
+    font-size: 1.5em;
+    color: #000;
+    background: #F2F2F2;
+    margin-bottom: 20px;
+    position: relative;
+    font-weight: 300;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 8px;
+  }
+  .Error404 #error404 .content p {
+    color: #fff;
+    font-size: 1.2em;
+    line-height: 1.8;
+  }
+  .Error404 #error404 .content span {
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    display: inline-block;
+    padding: 10px 25px;
+    background: #2E47C7;
+    margin-top: 25px;
+    border-radius: 25px;
+  }
+  
+  @media screen and (max-width: 650px) {
+    .Error404 #error404 {
+      width: 100%;
+      height: 100vh;
+      border-radius: 0px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+  
+  @media screen and (max-width: 460px) {
+    .Error404 #error404 .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+  }
+  
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="Error404">
+    <div id="error404">
+      <div class="content">
+        <h2>404</h2>
+        <h4>{% trans "Opps! page not found" %}</h4>
+        <p>
+          {% trans "The page you are looking for does not exist. You may have mistyped the url address or the page may have been moved." %}
+        </p>
+        <a href="{% url 'index' %}">
+          <span>{% trans "Back to home page" %}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+<script>
+  const container = document.getElementById("error404");
+
+  window.onmousemove = (e) => {
+    let x = -e.clientX / 5;
+    let y = -e.clientY / 5;
+    if (container) {
+      container.style.backgroundPositionX = x + "px";
+      container.style.backgroundPositionY = y + "px";
+    }
+  };
+</script>
+{% endblock js %}
+  

@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from bienlocation.apps.common.types import AuthenticatedHttpRequest
 from bienlocation.apps.core.forms.user_forms import UserChangeForm, UserCreationForm
-from bienlocation.apps.core.models.user_models import User
+from bienlocation.apps.core.models import User
 from bienlocation.apps.core.services.user_services import UserServices
 
 
@@ -18,6 +18,7 @@ class UserAdmin(BaseUserAdmin):
         "email",
         "full_name",
         "is_active",
+        "email_confirmed",
         "is_staff",
         "is_superuser",
         "date_joined",
@@ -27,6 +28,7 @@ class UserAdmin(BaseUserAdmin):
         "is_superuser",
         "is_staff",
         "is_active",
+        "email_confirmed",
         "date_joined",
         "updated_at",
     )
@@ -54,12 +56,19 @@ class UserAdmin(BaseUserAdmin):
             _("Permissions"),
             {
                 "fields": (
+                    "email_confirmed",
                     "is_active",
                     "is_staff",
                     "is_superuser",
                     "groups",
                     "user_permissions",
                 ),
+            },
+        ),
+        (
+            _("Terms and conditions and privacy"),
+            {
+                "fields": ("accepted_terms",),
             },
         ),
         (
@@ -84,6 +93,7 @@ class UserAdmin(BaseUserAdmin):
                     "email",
                     "password1",
                     "password2",
+                    "email_confirmed",
                     "is_active",
                     "is_staff",
                 ),

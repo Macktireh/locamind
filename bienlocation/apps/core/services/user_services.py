@@ -1,5 +1,5 @@
 from bienlocation.apps.common.services import model_update
-from bienlocation.apps.core.models.user_models import User
+from bienlocation.apps.core.models import User
 
 
 class UserServices:
@@ -13,6 +13,10 @@ class UserServices:
         non_side_effect_fields = ["first_name", "last_name"]
         user, has_updated = model_update(instance=user, fields=non_side_effect_fields, data=data)
         return user
+
+    def user_set_password(self, user: User, password: str) -> None:
+        user.set_password(password)
+        user.save()
 
     def user_delete(self, user: User) -> None:
         user.delete()

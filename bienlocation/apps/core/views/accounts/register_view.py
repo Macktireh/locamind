@@ -1,13 +1,16 @@
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 
+from bienlocation.apps.common.exceptions import UserAlreadyExistsError
 from bienlocation.apps.core.forms.auth_forms import RegisterForm
 from bienlocation.apps.core.services.auth_services import AuthService
 
 
 class RegisterView(View):
-    template_name = "auth/register.html"
+    template_name = "accounts/register.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
         context = {
@@ -17,12 +20,15 @@ class RegisterView(View):
 
     def post(self, request: HttpRequest) -> HttpResponse:
         form = RegisterForm(data=request.POST or None)
-        auth_uservice = AuthService(request=request)
-        if form.is_valid():
-            self.user = auth_uservice.register(form.get_data)
-            return redirect("core:register_confirm")
+        auth_service = AuthService(request=request)
 
-        context = {
-            "form": form,
-        }
-        return render(request=request, template_name=self.template_name, context=context)
+        if not form.is_valid():
+            return render(request=request, template_name=self.template_name, context={"form": form})
+
+        try:
+            auth_service.register(form.get_data)
+            messages.success(request, _("Registration successful. Please activate your account."))
+            return redirect("accounts:register_done")
+        except UserAlreadyExistsError as e:
+            messages.error(request, _(e.message))
+            return render(request=request, template_name=self.template_name, context={"form": form})

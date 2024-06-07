@@ -11,7 +11,12 @@ license = {text = "MIT"}
 dependencies = [
     "django>=5.0.6",
     "django-environ>=0.11.2",
+    "django-redis>=5.4.0",
+    "psycopg[binary]>=3.1.19",
     "whitenoise>=6.6.0",
+    "six>=1.16.0",
+    "celery>=5.4.0",
+    "flower>=2.0.1",
 ]
 
 [tool.pdm.dev-dependencies]
@@ -44,13 +49,15 @@ tailwind = "pnpm run tailwind"
 rufffix = "ruff --fix --exit-zero ."
 ruffformat = "ruff format ."
 ruffcheck = "ruff check ."
+export-deps = "pdm export -f requirements --without-hashes"
+docker = "docker compose up --build"
 mmm = {composite = ["makemigrations", "migrate"]}
 dev = {composite = ["tailwind", "start"]}
 ruff = {composite = ["rufffix", "ruffformat", "ruffcheck"]}
 
 
 [tool.ruff]
-line-length = 120
+line-length = 130
 # Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",

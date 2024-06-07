@@ -4,3 +4,12 @@ class ApplicationError(Exception):
 
         self.message = message
         self.extra = extra or {}
+
+
+class AccountDeactivatedError(ApplicationError):
+    pass
+
+
+class UserAlreadyExistsError(ApplicationError):
+    pass
+
