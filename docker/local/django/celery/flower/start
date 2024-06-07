@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+
+
+exec celery -A config flower --port=5555 --broker=${REDIS_URL}
