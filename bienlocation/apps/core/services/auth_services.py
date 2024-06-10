@@ -38,7 +38,7 @@ class AuthService:
         self._email_send_register(user)
         return user
 
-    def login(self, email: str, password: str):
+    def login(self, email: str, password: str) -> User | None:
         user = cast(User | None, authenticate(email=email, password=password))
 
         if user and not user.email_confirmed:
