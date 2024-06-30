@@ -9,7 +9,7 @@ services:
     image: bienlocation_local_django
     container_name: bienlocation_local_django
     volumes:
-      - .:/app
+      - .:/project
     ports:
       - 8000:8000
     env_file:
@@ -21,7 +21,7 @@ services:
       - mailpit
 
   postgres:
-    image: postgres:16.3-alpine3.20
+    image: postgres:16-alpine
     container_name: bienlocation_local_postgres
     volumes:
       - bienlocation_local_db_data:/var/lib/postgresql/data

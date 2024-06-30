@@ -17,6 +17,7 @@ dependencies = [
     "six>=1.16.0",
     "celery>=5.4.0",
     "flower>=2.0.1",
+    "django-countries>=7.6.1",
 ]
 
 [tool.pdm.dev-dependencies]
@@ -34,22 +35,22 @@ distribution = false
 
 
 [tool.pdm.scripts]
-newapp = "python manage.py startapp"
-makemigrations = "python manage.py makemigrations"
-migrate = "python manage.py migrate"
-start = "python manage.py runserver"
-test = "python manage.py test -v 2"
-shell = "python manage.py shell"
-createsuperuser = "python manage.py createsuperuser --email=admin@example.com --first_name=Admin --last_name=AD"
-collectstatic = "python manage.py collectstatic"
-loaddata = "python manage.py loaddata"
-dumpdata = "python manage.py dumpdata"
-stripe_sync = "python manage.py djstripe_sync_models"
+newapp = "python src/manage.py startapp"
+makemigrations = "python src/manage.py makemigrations"
+migrate = "python src/manage.py migrate"
+start = "python src/manage.py runserver"
+test = "python src/manage.py test -v 2"
+shell = "python src/manage.py shell"
+createsuperuser = "python src/manage.py createsuperuser --email=admin@example.com --first_name=Admin --last_name=AD"
+collectstatic = "python src/manage.py collectstatic"
+loaddata = "python src/manage.py loaddata"
+dumpdata = "python src/manage.py dumpdata"
+stripe_sync = "python src/manage.py djstripe_sync_models"
 tailwind = "pnpm run tailwind"
 rufffix = "ruff --fix --exit-zero ."
 ruffformat = "ruff format ."
 ruffcheck = "ruff check ."
-export-deps = "pdm export -f requirements --without-hashes"
+exports = "pdm export -f requirements --without-hashes"
 docker = "docker compose up --build"
 mmm = {composite = ["makemigrations", "migrate"]}
 dev = {composite = ["tailwind", "start"]}
