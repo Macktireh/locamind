@@ -1,7 +1,9 @@
-FROM python:3.12-slim as base
+ARG PYTHON_BASE=3.12-slim
+
+FROM python:$PYTHON_BASE AS builder
 
 # set work directory
-WORKDIR /app
+WORKDIR /project
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1

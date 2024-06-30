@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:653e1faae2e2ec7b8d4c51a5d3bc5b7bb733a608a2531003ec9c663ff81717b7"
+content_hash = "sha256:af6afe09f283e51bc0eb7b12a5d2faf0eee89d416ee09c630cec822d03f49f2a"
 
 [[package]]
 name = "amqp"
@@ -183,6 +183,20 @@ dependencies = [
 files = [
     {file = "django-browser-reload-1.12.1.tar.gz", hash = "sha256:875b6bd01db13380522ccb4ae75871a2edeae74bb5ac92bf32eb76763d575d86"},
     {file = "django_browser_reload-1.12.1-py3-none-any.whl", hash = "sha256:08b457f1b6599bf782d4d2ecdfb0897d6fc936ac4035060d0269c2af5ef4ef7a"},
+]
+
+[[package]]
+name = "django-countries"
+version = "7.6.1"
+summary = "Provides a country field for Django models."
+groups = ["default"]
+dependencies = [
+    "asgiref",
+    "typing-extensions",
+]
+files = [
+    {file = "django-countries-7.6.1.tar.gz", hash = "sha256:c772d4e3e54afcc5f97a018544e96f246c6d9f1db51898ab0c15cd57e19437cf"},
+    {file = "django_countries-7.6.1-py3-none-any.whl", hash = "sha256:1ed20842fe0f6194f91faca21076649513846a8787c9eb5aeec3cbe1656b8acc"},
 ]
 
 [[package]]
