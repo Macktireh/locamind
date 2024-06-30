@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./bienlocation/templates/**/*.{html,js,dj}",
-    "./bienlocation/static/**/*.{html,js,dj}",
+    "./scr/templates/**/*.{html,js,dj}",
+    "./scr/static/**/*.{html,js,dj}",
   ],
   theme: {
     extend: {

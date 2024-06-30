@@ -3,5 +3,5 @@
 set -o errexit
 set -o nounset
 
-
+cd src/
 exec celery -A config flower --port=5555 --broker=${REDIS_URL}

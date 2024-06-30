@@ -6,5 +6,6 @@ set -o pipefail
 set -o nounset
 
 # Launching migrations and the server
+cd src/
 python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
