@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base_empty.html' %}
 
 {% load static %}
 {% load i18n %}
@@ -8,10 +8,20 @@
 {% endblock %}
 
 {% block content %}
+  <aside class="h-screen sticky top-0 z-40">
+    <nav class="h-full flex flex-col border-r border-gray-500/30 shadow-sm bg-base-100 w-64">
+      <div class="flex justify-between items-center p-2">
+        <a href="{% url 'dashboard:index' %}" class="flex items-center gap-2 p-2">
+          <img src="{% static 'images/logo-rounded.png' %}" alt="logo {{ APP_NAME }}" width="30" />
+          <h1 class="text-lg md:text-2xl">{{ APP_NAME }}</h1>
+        </a>
+        <button class="btn btn-ghost btn-circle">
+          {% include 'partials/icon.html' with name='chevron-left' %}
+        </button>
+      </div>
+    </nav>
+  </aside>
   <div class="flex flex-col gap-4">
-    <button class="btn btn-neutral">Neutral</button>
-    <button class="btn btn-primary">Primary</button>
-    <button class="btn btn-secondary">Secondary</button>
-    <button class="btn btn-accent">Accent</button>
+    {% lorem 10 w %}
   </div>
 {% endblock %}

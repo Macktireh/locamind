@@ -1,10 +1,10 @@
 {
-  "name": "BienLocation",
+  "name": "bienlocation",
   "version": "1.0.0",
   "description": "Free online rental property management service for private landlords.",
   "main": "index.js",
   "scripts": {
-    "tailwind": "pnpx tailwindcss -i ./src/static/css/input.css -o ./src/static/css/output.css --watch"
+    "tailwind": "npx tailwindcss -i ./src/static/css/input.css -o ./src/static/css/output.css --watch"
   },
   "keywords": [],
   "author": "",

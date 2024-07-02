@@ -10,10 +10,7 @@ class RequestActivateView(View):
     template_name = "accounts/request_activate_success.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        context = {
-            "form": RequestPasswordResetForm(),
-        }
-        return render(request=request, template_name=self.template_name, context=context)
+        return render(request=request, template_name=self.template_name, context={"form": RequestPasswordResetForm()})
 
     def post(self, request: HttpRequest) -> HttpResponse:
         form = RequestPasswordResetForm(data=request.POST or None)

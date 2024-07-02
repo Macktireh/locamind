@@ -13,10 +13,7 @@ class RegisterView(View):
     template_name = "accounts/register.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        context = {
-            "form": RegisterForm(),
-        }
-        return render(request=request, template_name=self.template_name, context=context)
+        return render(request=request, template_name=self.template_name, context={"form": RegisterForm()})
 
     def post(self, request: HttpRequest) -> HttpResponse:
         form = RegisterForm(data=request.POST or None)
