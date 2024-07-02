@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from apps.accounts.models import User
 from apps.accounts.selectors import UserSelectors
 from apps.accounts.services.user_services import UserServices
-from apps.common.exceptions import AccountDeactivatedError, UserAlreadyExistsError
+from apps.common.exceptions import EmailNotConfirmError, UserAlreadyExistsError
 from apps.common.services import model_update
 from apps.common.types import EmailDataType, UserRegistrationDataType
 from apps.common.utils import tokenGenerator
@@ -43,7 +43,7 @@ class AuthService:
         user = cast(User | None, authenticate(email=email, password=password))
 
         if user and not user.email_confirmed:
-            raise AccountDeactivatedError(_("Please activate your account first"))
+            raise EmailNotConfirmError(_("Please confirm your email address"))
 
         return user
 

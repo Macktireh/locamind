@@ -6,10 +6,9 @@ class ApplicationError(Exception):
         self.extra = extra or {}
 
 
-class AccountDeactivatedError(ApplicationError):
+class EmailNotConfirmError(ApplicationError):
     pass
 
 
 class UserAlreadyExistsError(ApplicationError):
     pass
-

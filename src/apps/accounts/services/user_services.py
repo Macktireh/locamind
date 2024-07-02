@@ -8,6 +8,9 @@ class UserServices:
         return user
 
     def user_update(self, user: User, data: dict) -> User:
+        """
+        Update user data only for the fields 'first_name' and 'last_name'.
+        """
         non_side_effect_fields = ["first_name", "last_name"]
         user, has_updated = model_update(instance=user, fields=non_side_effect_fields, data=data)
         return user

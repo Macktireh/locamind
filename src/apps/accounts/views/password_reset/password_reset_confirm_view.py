@@ -14,10 +14,7 @@ class PasswordResetConfirmView(View):
         user = auth_uservice.password_reset_confirm_form(uidb64, token)
         if user is None:
             return render(request=request, template_name="errors/404.html")
-        context = {
-            "form": ResetPasswordConfirmForm(),
-        }
-        return render(request=request, template_name=self.template_name, context=context)
+        return render(request=request, template_name=self.template_name, context={"form": ResetPasswordConfirmForm()})
 
     def post(self, request: HttpRequest, uidb64: str, token: str) -> HttpResponse:
         form = ResetPasswordConfirmForm(data=request.POST or None)

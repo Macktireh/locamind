@@ -7,5 +7,4 @@ class RequestPasswordResetDoneView(View):
     template_name = "accounts/password_reset/request_password_reset_done.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        context = {}
-        return render(request=request, template_name=self.template_name, context=context)
+        return render(request=request, template_name=self.template_name, context={})
