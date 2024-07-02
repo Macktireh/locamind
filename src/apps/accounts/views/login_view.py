@@ -8,7 +8,7 @@ from django.views import View
 from apps.accounts.forms import LoginForm
 from apps.accounts.services.auth_services import AuthService
 from apps.accounts.services.user_services import UserServices
-from apps.common.exceptions import AccountDeactivatedError
+from apps.common.exceptions import EmailNotConfirmError
 
 
 class LoginView(View):
@@ -16,10 +16,7 @@ class LoginView(View):
     user_service = UserServices()
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        context = {
-            "form": LoginForm(),
-        }
-        return render(request=request, template_name=self.template_name, context=context)
+        return render(request=request, template_name=self.template_name, context={"form": LoginForm()})
 
     def post(self, request: HttpRequest) -> HttpResponse:
         form = LoginForm(data=request.POST or None)
@@ -28,7 +25,7 @@ class LoginView(View):
         if form.is_valid():
             try:
                 user = auth_service.login(**form.cleaned_data)
-            except AccountDeactivatedError as e:
+            except EmailNotConfirmError as e:
                 messages.warning(request, _(e.message))
                 return redirect("accounts:request_activate")
 

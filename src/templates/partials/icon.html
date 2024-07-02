@@ -61,11 +61,19 @@
       <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"></path>
     </svg>
   {% elif name == 'success' %}
-  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 14 14">
-    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m4 8l2.05 1.64a.48.48 0 0 0 .4.1a.5.5 0 0 0 .34-.24L10 4"/>
-        <circle cx="7" cy="7" r="6.5"/>
-    </g>
-</svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="{{ size_icon }}" height="{{ size_icon }}" viewBox="0 0 14 14">
+      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m4 8l2.05 1.64a.48.48 0 0 0 .4.1a.5.5 0 0 0 .34-.24L10 4"/>
+          <circle cx="7" cy="7" r="6.5"/>
+      </g>
+    </svg>
+  {% elif name == 'chevron-right' %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="{{ size_icon }}" height="{{ size_icon }}" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8L6.22 5.28a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/>
+    </svg>
+  {% elif name == 'chevron-left' %}
+    <svg xmlns="http://www.w3.org/2000/svg" width="{{ size_icon }}" height="{{ size_icon }}" viewBox="0 0 16 16">
+      <path fill="currentColor" fill-rule="evenodd" d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0" clip-rule="evenodd"/>
+    </svg>
   {% endif %}
 {% endwith %}
