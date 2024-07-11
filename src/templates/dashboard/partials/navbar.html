@@ -1,0 +1,49 @@
+{% load static %}
+{% load i18n %}
+
+
+{% with navbar_class=cls|default:'' %}
+  <nav class="w-full h-6 navbar sticky top-0 z-40 bg-base-100/60 backdrop-filter backdrop-blur-sm shadow-sm {% if navbar_class %} {{ navbar_class }} {% endif %}" style="backdrop-filter: blur(12px);">
+    <div class="flex-1 mr-2">
+      <ul class="menu menu-horizontal float-start" style="padding-left: 0; padding-right: 0;">
+        <li>
+          <a href="{% url 'landing' %}" class="normal-case text-xl">
+            <img src="{% static 'images/logo-rounded.png' %}" class="w-8" alt="logo {{ APP_NAME }}" />
+            <span class="hidden md:inline">{{ APP_NAME }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-none lg:hidden">
+      <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </label>
+    </div>
+    <div class="flex-none hidden lg:block">
+      <ul class="menu menu-horizontal text-lg gap-1">
+        <!-- Navbar menu content here -->
+        <li>
+          <a href="{% url 'landing' %}">{% translate 'Home' %}</a>
+        </li>
+        <li>
+          <a href="{% url 'accounts:password_reset_complete' %}">{% translate 'Services' %}</a>
+        </li>
+        <li>
+          <a>{% translate 'Pricing' %}</a>
+        </li>
+        <li>
+          <a>{% translate 'Blog' %}</a>
+        </li>
+        <li>
+          <a href="{% url 'accounts:login' %}" class="btn btn-ghost">{% translate 'Login' %}</a>
+        </li>
+        <li>
+          <a href="{% url 'accounts:register' %}" class="btn btn-primary">{% translate 'Register' %}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+{% endwith %}
+  

@@ -49,20 +49,20 @@ END_PYTHON
 # We wait until the PostgreSQL database is ready and the postgres_ready function
 # returns the value 0 (synonymous with success)
 until postgres_ready; do
-  >&2 echo 'Waiting for PostgreSQL to become available...'
+  >&2 echo '⏳ Waiting for PostgreSQL to become available...'
   sleep 1
 done
 
->&2 echo 'PostgreSQL is ready!'
+>&2 echo '✅ PostgreSQL is ready!'
 
 # We wait until the Redis server is ready and the redis_ready function
 # returns the value 0 (synonymous with success)
 until redis_ready; do
-  >&2 echo 'Waiting for Redis to become available...'
+  >&2 echo '⏳ Waiting for Redis to become available...'
   sleep 1
 done
 
->&2 echo 'Redis is ready!'
+>&2 echo '✅ Redis is ready!'
 
 # Execution of the /start file received in parameter
 exec "$@"
