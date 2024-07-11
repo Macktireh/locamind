@@ -19,11 +19,7 @@ urlpatterns = [
     path(route="activate/<str:uidb64>/<str:token>/", view=ActivateView.as_view(), name="activate"),
     path(route="request/activate/", view=RequestActivateView.as_view(), name="request_activate"),
     path(route="request/password-reset/", view=RequestPasswordResetView.as_view(), name="reset_password"),
-    path(
-        route="request/password-reset/done/",
-        view=RequestPasswordResetDoneView.as_view(),
-        name="request_password_reset_done",
-    ),
+    path(route="request/password-reset/done/", view=RequestPasswordResetDoneView.as_view(), name="request_password_reset_done"),
     path(
         route="password-reset/confirm/<str:uidb64>/<str:token>/",
         view=PasswordResetConfirmView.as_view(),

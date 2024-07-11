@@ -21,12 +21,11 @@
   </div>
   <div class="flex-none hidden lg:block">
     <ul class="menu menu-horizontal text-lg gap-1">
-      <!-- Navbar menu content here -->
       <li>
         <a href="{% url 'landing' %}">{% translate 'Home' %}</a>
       </li>
       <li>
-        <a href="{% url 'accounts:password_reset_complete' %}">{% translate 'Services' %}</a>
+        <a href="{% url 'dashboard:index' %}">{% translate 'Services' %}</a>
       </li>
       <li>
         <a>{% translate 'Pricing' %}</a>
