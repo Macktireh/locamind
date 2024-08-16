@@ -12,3 +12,7 @@ class EmailNotConfirmError(ApplicationError):
 
 class UserAlreadyExistsError(ApplicationError):
     pass
+
+
+class TokenIsInvalidError(ApplicationError):
+    pass

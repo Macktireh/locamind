@@ -10,7 +10,7 @@
 {% block content %}
   <div class="size-full md:max-w-xl m-auto bg-base-100 flex flex-col gap-4 p-2 md:p-6" style="border-radius: 1rem;">
     <div class="flex flex-col items-center text-center gap-4 mb-4">
-      <a href="{% url 'landing' %}"><img src="{% static 'images/logo-rounded.png' %}" alt="logo {{ APP_NAME }}" class="w-16 lg:w-24 m-auto" /></a>
+      <a href="{% url 'landing:index' %}"><img src="{% static 'images/logo-rounded.png' %}" alt="logo {{ APP_NAME }}" class="w-16 lg:w-24 m-auto" /></a>
       <h1 class="text-xl md:text-2xl">{% translate 'Your account is deactivated. To activate it, please enter your e-mail address below and we will send you instructions on how to activate your account.' %}</h1>
     </div>
     <form method="post" class="flex flex-col gap-4 p-4">

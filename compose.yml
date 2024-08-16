@@ -1,13 +1,13 @@
 volumes:
-  bienlocation_local_db_data: {}
+  bienrental_local_db_data: {}
 
 services:
   django: &django
     build: 
       context: .
       dockerfile: /docker/local/django/Dockerfile
-    image: bienlocation_local_django
-    container_name: bienlocation_local_django
+    image: bienrental_local_django
+    container_name: bienrental_local_django
     volumes:
       - .:/project
     ports:
@@ -22,9 +22,9 @@ services:
 
   postgres:
     image: postgres:16-alpine
-    container_name: bienlocation_local_postgres
+    container_name: bienrental_local_postgres
     volumes:
-      - bienlocation_local_db_data:/var/lib/postgresql/data
+      - bienrental_local_db_data:/var/lib/postgresql/data
     environment:
       - "POSTGRES_USER=${DB_USER}"
       - "POSTGRES_PASSWORD=${DB_PASSWORD}"
@@ -32,34 +32,34 @@ services:
 
   mailpit:
     image: docker.io/axllent/mailpit:latest
-    container_name: bienlocation_local_mailpit
+    container_name: bienrental_local_mailpit
     ports:
       - "8025:8025"
 
   redis:
     image: redis:alpine
-    container_name: bienlocation_local_redis
+    container_name: bienrental_local_redis
     ports:
       - 6379:6379
   
   celeryworker:
     <<: *django
-    image: bienlocation_local_celeryworker
-    container_name:  bienlocation_local_celeryworker
+    image: bienrental_local_celeryworker
+    container_name:  bienrental_local_celeryworker
     ports: []
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
-    image: bienlocation_local_celerybeat
-    container_name:  bienlocation_local_celerybeat
+    image: bienrental_local_celerybeat
+    container_name:  bienrental_local_celerybeat
     ports: []
     command: /start-celerybeat
 
   flower:
     <<: *django
-    image: bienlocation_local_flower
-    container_name:  bienlocation_local_flower
+    image: bienrental_local_flower
+    container_name:  bienrental_local_flower
     ports:
       - 5555:5555
     command: /start-flower

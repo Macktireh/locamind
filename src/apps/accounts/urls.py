@@ -2,6 +2,8 @@ from django.urls import path
 
 from apps.accounts.views.activation_view import ActivateView
 from apps.accounts.views.login_view import LoginView
+from apps.accounts.views.login_with_google_view import LoginWithGoogleCallBackView
+from apps.accounts.views.logout_view import LogoutView
 from apps.accounts.views.password_reset.password_reset_complete_view import PasswordResetCompleteView
 from apps.accounts.views.password_reset.password_reset_confirm_view import PasswordResetConfirmView
 from apps.accounts.views.password_reset.request_password_reset_done_view import RequestPasswordResetDoneView
@@ -14,6 +16,7 @@ app_name = "accounts"
 
 urlpatterns = [
     path(route="login/", view=LoginView.as_view(), name="login"),
+    path(route="login/google/callback/", view=LoginWithGoogleCallBackView.as_view(), name="login_with_google"),
     path(route="register/", view=RegisterView.as_view(), name="register"),
     path(route="register/confirm/", view=RegisterConfirmView.as_view(), name="register_done"),
     path(route="activate/<str:uidb64>/<str:token>/", view=ActivateView.as_view(), name="activate"),
@@ -26,4 +29,5 @@ urlpatterns = [
         name="password_reset_confirm",
     ),
     path(route="password-reset/complete/", view=PasswordResetCompleteView.as_view(), name="password_reset_complete"),
+    path(route="logout/", view=LogoutView.as_view(), name="logout"),
 ]

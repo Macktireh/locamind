@@ -20,7 +20,7 @@ LOCAL_APPS = [
     "apps.common",
     "apps.emails",
     "apps.dashboard",
-    "apps.home",
+    "apps.landing",
     "apps.profiles",
 ]
 
@@ -43,6 +43,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.auth.middleware.LoginRequiredMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -110,6 +111,10 @@ USE_I18N = True
 USE_TZ = True
 
 
+LOGIN_URL = "accounts:login"
+LOGIN_REDIRECT_URL = "landing:index"
+LOGOUT_REDIRECT_URL = LOGIN_URL
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -132,3 +137,7 @@ EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.s
 
 
 APP_DOMAIN = env("APP_DOMAIN", default="http://localhost:8000")
+
+GOOGLE_OAUTH2_CLIENT_ID = env.str("GOOGLE_OAUTH2_CLIENT_ID")
+GOOGLE_OAUTH2_CLIENT_SECRET = env.str("GOOGLE_OAUTH2_CLIENT_SECRET")
+GOOGLE_OAUTH2_REDIRECT_URI = env.str("GOOGLE_OAUTH2_REDIRECT_URI")

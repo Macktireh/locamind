@@ -1,0 +1,12 @@
+celery
+django
+django-countries
+django-environ
+django-phonenumber-field[phonenumberslite]
+django-redis
+flower
+google-api-python-client
+psycopg[binary]
+requests-oauthlib
+six
+whitenoise

@@ -7,7 +7,7 @@
     <div class="flex-1 mr-2">
       <ul class="menu menu-horizontal float-start" style="padding-left: 0; padding-right: 0;">
         <li>
-          <a href="{% url 'landing' %}" class="normal-case text-xl">
+          <a href="{% url 'landing:index' %}" class="normal-case text-xl">
             <img src="{% static 'images/logo-rounded.png' %}" class="w-8" alt="logo {{ APP_NAME }}" />
             <span class="hidden md:inline">{{ APP_NAME }}</span>
           </a>
@@ -23,9 +23,8 @@
     </div>
     <div class="flex-none hidden lg:block">
       <ul class="menu menu-horizontal text-lg gap-1">
-        <!-- Navbar menu content here -->
         <li>
-          <a href="{% url 'landing' %}">{% translate 'Home' %}</a>
+          <a href="{% url 'landing:index' %}">{% translate 'Home' %}</a>
         </li>
         <li>
           <a href="{% url 'accounts:password_reset_complete' %}">{% translate 'Services' %}</a>

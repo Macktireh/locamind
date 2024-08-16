@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ["Roboto", "sans-serif"],
-        oswald: ["Lobster", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+        lobster: ["Lobster", "sans-serif"],
       },
     },
   },
