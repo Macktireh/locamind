@@ -5,23 +5,19 @@
   <head>
     {% include 'partials/metadata.html' %}
     <title>
-      {% block title %}
-      {% endblock %}- {{ APP_NAME }}
+      {% block title %} {% endblock %} - {{ APP_NAME }}
     </title>
-    <link rel="stylesheet" href="{% static 'css/output.css' %}" />
-    {% block css %}
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'common/css/output.css' %}" />
+    {% block css %} {% endblock %}
   </head>
 
   <body>
     {% comment %} {% include 'partials/toast.html' %} {% endcomment %}
     {% comment %} {% include 'partials/tailwind-debug.html' %} {% endcomment %}
 
-    {% block content %}
-    {% endblock %}
+    {% block content %} {% endblock %}
 
     {% include 'partials/js.html' %}
-    {% block js %}
-    {% endblock %}
+    {% block js %} {% endblock %}
   </body>
 </html>

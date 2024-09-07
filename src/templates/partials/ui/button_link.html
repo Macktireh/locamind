@@ -1,0 +1,12 @@
+{% load static %}
+{% load i18n %}
+
+<a href="{% url url %}" class="btn-link" aria-label="{{ text }}">
+  {% if icon %}
+    {% include 'partials/icon.html' with name=icon %}
+  {% endif %}
+
+  {% if text %}
+    <span aria-label="{{ text }}">{% blocktrans %}{{ text }}{% endblocktrans %}</span>
+  {% endif %}
+</a>

@@ -1,0 +1,25 @@
+{% load static %}
+{% load i18n %}
+
+<header class="dash-header">
+  <nav>
+    <a href="{% url 'dashboard:index' %}" class="app-logo">
+      <img src="{% static 'common/images/logo-rounded.png' %}" alt="logo {{ APP_NAME }}" />
+      <h1>{{ APP_NAME }}</h1>
+    </a>
+    <ul>
+      <li>
+        {% include 'partials/ui/button_link.html' with url='dashboard:index' text='Dashboard' icon='home' %}
+      </li>
+      <li>
+        {% include 'partials/ui/button_link.html' with url='dashboard:index' text='Profile' icon='home' %}
+      </li>
+      <li>
+        {% include 'partials/ui/button_link.html' with url='dashboard:index' text='Logout' icon='home' %}
+      </li>
+      <li>
+        {% include 'partials/ui/theme.html' %}
+      </li>
+    </ul>
+  </nav>
+</header>

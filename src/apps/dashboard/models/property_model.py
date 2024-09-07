@@ -28,3 +28,6 @@ class Property(BaseModel):
         db_table = "properties"
         verbose_name = _("Property")
         verbose_name_plural = _("Properties")
+
+    def __str__(self) -> str:
+        return f"{self.property_type}<{self.owner.get_full_name()}>"

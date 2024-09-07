@@ -8,8 +8,7 @@ from django.utils.translation import gettext_lazy as _
 @deconstructible
 class RequireFieldValidator:
     def __init__(self, field_name, message=None) -> None:
-        self.field_name = field_name
-        self.message = message or _(f"{self.field_name} is required")
+        self.message = message or _(f"{field_name} is required")
 
     def __call__(self, value) -> None:
         if not value:
@@ -28,12 +27,12 @@ class RequireFieldMixin:
 class PasswordFieldValidator:
     def __init__(
         self,
-        min_length=6,
-        require_digit=True,
-        require_upper=True,
-        require_lower=True,
-        require_special=True,
-        message=None,
+        min_length: int = 6,
+        require_digit: bool = True,
+        require_upper: bool = True,
+        require_lower: bool = True,
+        require_special: bool = True,
+        message: str | None = None,
     ):
         self.min_length = min_length
         self.require_digit = require_digit
@@ -49,9 +48,7 @@ class PasswordFieldValidator:
         errors = []
 
         if len(value) < self.min_length:
-            errors.append(
-                _("Password must be at least %(min_length)d characters long.") % {"min_length": self.min_length}
-            )
+            errors.append(_("Password must be at least %(min_length)d characters long.") % {"min_length": self.min_length})
 
         if self.require_digit and not re.search(r"\d", value):
             errors.append(_("Password must contain at least one digit."))

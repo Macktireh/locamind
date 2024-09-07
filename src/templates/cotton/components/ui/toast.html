@@ -1,0 +1,11 @@
+<div
+  x-data="toast('{{ message }}')"
+  class="alert alert-{{ tags }}"
+  x-show="show"
+  title="{{ message }}"
+>
+  <span>{{ message }}</span>
+  <div class="alert-close" @click="onCloseToast()">
+    <c-components.ui.icon name="close" />
+  </div>
+</div>

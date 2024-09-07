@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr" data-theme="{{ DATA_THEME }}">
+  <head>
+    {% include 'partials/metadata.html' %}
+    <title>
+      {% block title %} {% endblock %} - {{ APP_NAME }}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% block css %} {% endblock %}
+  </head>
+
+  <body>
+    {% comment %} {% include 'partials/toast.html' %} {% endcomment %}
+    {% comment %} {% include 'partials/tailwind-debug.html' %} {% endcomment %}
+
+    {% block content %} {% endblock %}
+
+    {% include 'partials/js.html' %}
+    {% block js %} {% endblock %}
+  </body>
+</html>

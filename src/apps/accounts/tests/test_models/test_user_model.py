@@ -4,7 +4,7 @@ from apps.core.models import User
 
 
 class UserModelTest(TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.user = User.objects.create_user(
             first_name="John", last_name="Doe", email="john.doe@example.com", password="password123"
         )
