@@ -1,4 +1,6 @@
 src/apps/core
+*.css.map
+.pdm-python
 
 ##------------------------------------------------     Python     ------------------------------------------------##
 # Byte-compiled / optimized / DLL files
