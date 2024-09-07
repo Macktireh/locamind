@@ -24,6 +24,7 @@
       {% translate 'OR' %}
     </div>
     {% include "accounts/components/googleLoginButton.html" %}
+    {% include 'partials/ui/button_link.html' with url='dashboard:index' text='Logout' icon='home' %}
     <div class="flex flex-col gap-4 p-2 mt-2">
       <p class="text-center text-md">
         {% translate "Don't have an account?" %} <a href="{% url 'accounts:register' %}" class="link">{% translate 'Register' %}</a>

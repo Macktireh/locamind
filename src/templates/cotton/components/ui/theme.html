@@ -1,0 +1,17 @@
+<button
+  x-data
+  x-init="$store.theme.syncTheme()"
+  id="theme-toggle"
+  @click="$store.theme.toggle()"
+  x-cloak
+  data-theme-toggle
+  aria-label="Toggle theme"
+  title="Toggle theme"
+>
+  <div x-show="!$store.theme.isDark()" style="cursor: pointer">
+    <c-components.ui.icon name="light" />
+  </div>
+  <div x-show="$store.theme.isDark()">
+    <c-components.ui.icon name="dark" />
+  </div>
+</button>

@@ -1,0 +1,43 @@
+{% load static %} {% load i18n %}
+
+{% translate "Messages" as Messages %} 
+{% translate "Notifications" as Notifications %} 
+{% translate "Profile" as Profile %}
+
+<header class="dash-header">
+  <nav>
+    <a href="{% url 'dashboard:index' %}" class="app-logo">
+      <img
+        src="{% static 'common/images/logo-rounded.png' %}"
+        alt="logo {{ APP_NAME }}"
+      />
+      <h1>{{ APP_NAME }}</h1>
+    </a>
+    <ul>
+      <li>
+        <c-components.ui.link
+          url="dashboard:index"
+          text="{{ Messages }}"
+          icon="home"
+        />
+      </li>
+      <li>
+        <c-components.ui.link
+          url="dashboard:index"
+          text="{{ Notifications }}"
+          icon="notification"
+        />
+      </li>
+      <li>
+        <c-components.ui.link
+          url="dashboard:index"
+          text="{{ Profile }}"
+          icon="user"
+        />
+      </li>
+      <li>
+        <c-components.ui.theme />
+      </li>
+    </ul>
+  </nav>
+</header>

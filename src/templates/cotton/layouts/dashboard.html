@@ -1,0 +1,14 @@
+<c-layouts.base>
+  <c-slot name="title">{{ title }}</c-slot>
+
+  <div id="dashboard-container">
+    <c-components.navbar.dashboard />
+    <div class="aside-main">
+      <c-components.sidebar.dashboard />
+      {{ slot }}
+    </div>
+  </div>
+
+  {{ js }}
+  {% include 'partials/js.html' %}
+</c-layouts.base>

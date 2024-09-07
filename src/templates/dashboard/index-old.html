@@ -1,0 +1,27 @@
+{% extends 'base/base_empty.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+  {% blocktrans %}Simplifiez la gestion de vos biens immobiliers avec {{ APP_NAME }}{% endblocktrans %}
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'common/css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+  <div class="dashboard-container">
+    {% comment %} {% include 'partials/navbar/app.html' %} {% endcomment %}
+    <c-components.navbar.app />
+
+    <div class="aside-main">
+      {% include 'partials/sidebar/app.html' %}
+      <main class="flex flex-col gap-4">
+        sss {% lorem 10000 w %}
+      </main>
+    </div>
+  </div>
+{% endblock %}

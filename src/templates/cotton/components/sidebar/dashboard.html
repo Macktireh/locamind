@@ -1,0 +1,34 @@
+{% load static %}
+{% load i18n %}
+
+{% translate "Home" as Home %}
+{% translate "Owners" as Owners %}
+{% translate "Rentals" as Rentals %}
+
+<aside>
+  <nav>
+    <ul>
+      <li>
+        <c-components.ui.link
+          url="dashboard:index"
+          text="{{ Home }}"
+          icon="home"
+        />
+      </li>
+      <li>
+        <c-components.ui.link
+          url="dashboard:index"
+          text="{{ Owners }}"
+          icon="home"
+        />
+      </li>
+      <li>
+        <c-components.ui.link
+          url="dashboard:index"
+          text="{{ Rentals }}"
+          icon="home"
+        />
+      </li>
+    </ul>
+  </nav>
+</aside>
