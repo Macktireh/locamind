@@ -18,13 +18,14 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
 LOCAL_APPS = [
     "apps.accounts",
     "apps.common",
-    "apps.emails",
     "apps.dashboard",
+    "apps.emails",
     "apps.landing",
-    "apps.profiles",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "django_cotton",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",

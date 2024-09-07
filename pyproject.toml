@@ -8,13 +8,15 @@ readme = "README.md"
 license = { text = "MIT" }
 dependencies = [
     "celery>=5.4.0",
-    "django>=5.1",
+    "django>=5.1.1",
+    "django-cotton>=0.9.36",
     "django-countries>=7.6.1",
     "django-environ>=0.11.2",
     "django-phonenumber-field[phonenumberslite]>=8.0.0",
     "django-redis>=5.4.0",
     "flower>=2.0.1",
-    "google-api-python-client>=2.141.0",
+    "google-api-python-client>=2.144.0",
+    "Pillow>=10.4.0",
     "psycopg[binary]>=3.2.1",
     "requests-oauthlib>=2.0.0",
     "six>=1.16.0",
@@ -29,7 +31,7 @@ dev = [
 ]
 linter = [
     "pre-commit>=3.8.0",
-    "ruff>=0.6.0",
+    "ruff>=0.6.4",
 ]
 
 
@@ -62,7 +64,6 @@ ruff = { composite = ["rufffix", "ruffformat", "ruffcheck"] }
 
 [tool.ruff]
 line-length = 130
-# Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",
     ".direnv",
