@@ -1,0 +1,34 @@
+/// Extracts the red, green and blue components of a color into a list.
+///
+/// @param {Color} $color - The color to extract the components from.
+/// @return {List} A list containing the red, green and blue components of
+@function extract-rgb($color) {
+  @return (red($color), green($color), blue($color));
+}
+
+
+/// Creates a color with the given name, shade, and alpha value.
+///
+/// @param {String} $color-name - The name of the color to retrieve.
+/// @param {Number} $shade - The shade of the color (defaults to 500).
+/// @param {Number} $alpha - The alpha value of the color (defaults to 1).
+/// @return {Color} A color with the given name, shade, and alpha value.
+@function color($color, $shade: 0, $alpha: 1) {
+  // Construct the full color name with the shade
+  $full-color-name: if($shade == 0, $color, #{$color}-#{$shade});
+  
+  // Retrieve the color value from the CSS variable
+  $color-value: var(--color-#{$full-color-name});
+
+  // Return the color with the specified alpha value
+  @return rgba($color-value, $alpha);
+}
+
+
+/// Returns the opposite theme of the given one.
+///
+/// @param {String} $theme - The theme to get the opposite of.
+/// @return {String} The opposite theme of the given one.
+@function get-opposite-theme($theme) {
+  @return if($theme == "light", "dark", "light");
+}
