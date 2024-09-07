@@ -58,7 +58,7 @@ class AuthService:
         user = user_service.update(user=user, data={"email_confirmed": True})
         email_payload = EmailDataType(
             to=user,
-            subject=_("BienRental account activation success."),
+            subject=_("Locamind account activation success."),
             plain_text="",
             html="",
         )
@@ -128,7 +128,7 @@ class AuthService:
     def _email_send_register(self, user) -> None:
         email_payload = EmailDataType(
             to=user,
-            subject=_("Activate your BienRental account now!"),
+            subject=_("Activate your Locamind account now!"),
             plain_text="",
             html="",
         )

@@ -1,5 +1,5 @@
 [project]
-name = "BienRental"
+name = "Locamind"
 version = "0.1.0"
 description = "Free online rental property management service for private landlords."
 authors = [{ name = "Macktireh", email = "mack.abdisoubaneh@gmail.com" }]
@@ -29,10 +29,7 @@ dev = [
     "django-debug-toolbar>=4.4.6",
     "django-extensions>=3.2.3",
 ]
-linter = [
-    "pre-commit>=3.8.0",
-    "ruff>=0.6.4",
-]
+linter = ["pre-commit>=3.8.0", "ruff>=0.6.4"]
 
 
 [tool.pdm]
