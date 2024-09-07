@@ -1,0 +1,47 @@
+* {
+  transition: all 0.1s ease-out;
+}
+
+body {
+  font-family: $roboto;
+  background-color: color($background);
+  color: color($text);
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+nav,
+main,
+footer {
+  width: 100%;
+  max-width: 1600px;
+  padding: 1rem;
+}
+
+path {
+  fill: color($text, $alpha: 0.7);
+  stroke: color($text,$alpha: 0.7);
+}
+
+svg {
+  width: 20px;
+  height: 20px;
+  // &:hover {
+  //   path {
+  //     fill: color($primary, $alpha: 0.7);
+  //     stroke: color($primary, $alpha: 0.7);
+  //   }
+  // }
+}
+
+button {
+  border: none;
+  // outline: none;
+  cursor: pointer;
+  background-color: inherit;
+}
+
+[x-cloak] {
+  display: none !important;
+}

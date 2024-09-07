@@ -1,0 +1,81 @@
+.Error404 {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(45deg, color($neutral, $shade: 0), color($neutral, $shade: 0));
+
+  #error404 {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    left: 10%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("https://raw.githubusercontent.com/Macktireh/Media/main/images/404.png")
+      #151729;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+
+    .content {
+      text-align: center;
+
+      h2 {
+        font-size: 8em;
+        color: #fff;
+        line-height: 1em;
+        margin-bottom: 1.5rem;
+      }
+      h4 {
+        font-size: 1.5em;
+        color: #000;
+        background: #f2f2f2;
+        margin-bottom: 20px;
+        position: relative;
+        font-weight: 300;
+        padding: 10px 20px;
+        display: inline-block;
+        border-radius: 8px;
+      }
+      p {
+        color: #fff;
+        font-size: 1.2em;
+        line-height: 1.8;
+      }
+      span {
+        color: #fff;
+        position: relative;
+        display: inline-block;
+        display: inline-block;
+        padding: 10px 25px;
+        background: color($primary);
+        margin-top: 25px;
+        border-radius: 25px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Error404 #error404 {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .Error404 #error404 .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+}

@@ -1,0 +1,17 @@
+@import "./colors";
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/static/common/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lobster';
+  src: url('/static/common/fonts/Lobster/Lobster-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$roboto: 'Roboto', sans-serif;
+$lobster: 'Lobster', cursive;
