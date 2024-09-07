@@ -176,7 +176,7 @@ class ResetPasswordConfirmForm(forms.Form):
         strip=False,
     )
 
-    def clean_new_password2(self):
+    def clean_new_password2(self) -> str | None:
         new_password1 = self.cleaned_data.get("new_password1")
         new_password2 = self.cleaned_data.get("new_password2")
         password_confirmation_validator(new_password1, new_password2)
