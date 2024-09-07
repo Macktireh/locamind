@@ -1,0 +1,12 @@
+button, a.btn-link {
+    @extend .flex-center;
+    gap: 0.5rem;
+    font-weight: 600;
+    padding: 0.8rem;
+    border-radius: 5px;
+    color: color(text);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      background-color: color($neutral, $shade: 300, $alpha: 0.5);
+    }
+  }
