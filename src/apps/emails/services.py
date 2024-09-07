@@ -37,7 +37,7 @@ class EmailServices:
         html = email.html
         plain_text = email.plain_text
 
-        msg = EmailMultiAlternatives(subject, plain_text, from_email, [to])
+        msg = EmailMultiAlternatives(subject=subject, body=plain_text, from_email=from_email, to=[to])
         msg.attach_alternative(html, "text/html")
 
         msg.send()

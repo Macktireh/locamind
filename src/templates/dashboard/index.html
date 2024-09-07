@@ -1,19 +1,12 @@
-{% extends 'base/base_empty.html' %}
-
 {% load static %}
 {% load i18n %}
 
-{% block title %}
-  {% blocktrans %}Simplifiez la gestion de vos biens immobiliers avec {{APP_NAME}}{% endblocktrans %}
-{% endblock %}
+<c-layouts.dashboard>
+  <c-slot name="title">
+    {% blocktrans %}Simplify your property management with {{ APP_NAME }}{% endblocktrans %}
+  </c-slot>
 
-{% block content %}
-  {% include 'dashboard/partials/navbar.html' with cls='border-b border-gray-500/30' %}
-
-  <div class="flex flex-row gap-4">
-    {% include 'dashboard/partials/sidebar.html' %}
-    <div class="flex flex-col gap-4">
-      {% lorem 10 w %}
-    </div>
-  </div>
-{% endblock %}
+  <main>
+    sss {% lorem 100 w %}
+  </main>
+</c-layouts.dashboard>

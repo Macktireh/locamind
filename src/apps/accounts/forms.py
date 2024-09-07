@@ -27,7 +27,7 @@ class RegisterForm(forms.Form):
         max_length=150,
         required=True,
         initial="John",
-        validators=[RequireFieldValidator("first_name")],
+        validators=[RequireFieldValidator(_("first name"))],
         widget=forms.TextInput(
             attrs={
                 "placeholder": _("first name"),
@@ -40,7 +40,7 @@ class RegisterForm(forms.Form):
         max_length=150,
         required=True,
         initial="Doe",
-        validators=[RequireFieldValidator("first_name")],
+        validators=[RequireFieldValidator(_("last name"))],
         widget=forms.TextInput(
             attrs={
                 "placeholder": _("last name"),

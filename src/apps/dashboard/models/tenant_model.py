@@ -15,3 +15,6 @@ class Tenant(BaseModel):
         db_table = "tenants"
         verbose_name = _("Tenant")
         verbose_name_plural = _("Tenants")
+
+    def __str__(self) -> str:
+        return f"Tenant<{self.user.get_full_name()}>"

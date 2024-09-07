@@ -16,3 +16,6 @@ class Address(BaseModel):
         db_table = "addresses"
         verbose_name = _("Address")
         verbose_name_plural = _("Addresses")
+
+    def __str__(self) -> str:
+        return f"{self.street}, {self.postal_code}, {self.city}, {self.country}"

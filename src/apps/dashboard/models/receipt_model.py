@@ -15,3 +15,6 @@ class Receipt(BaseModel):
         db_table = "receipts"
         verbose_name = _("Receipt")
         verbose_name_plural = _("Receipts")
+
+    def __str__(self) -> str:
+        return f"Receipt<{self.issue_date} - {self.amount_paid}>"

@@ -1,0 +1,9 @@
+<a href="{% url url %}" class="btn-link" title="{{ text }}">
+  {% if icon %}
+    <c-components.ui.icon name="{{ icon }}" />
+  {% endif %}
+
+  {% if text %}
+    <span>{{ text }}</span>
+  {% endif %}
+</a>
