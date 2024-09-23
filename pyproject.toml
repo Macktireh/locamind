@@ -3,21 +3,21 @@ name = "Locamind"
 version = "0.1.0"
 description = "Free online rental property management service for private landlords."
 authors = [{ name = "Macktireh", email = "mack.abdisoubaneh@gmail.com" }]
-requires-python = "==3.12.*"
+requires-python = ">=3.12.*"
 readme = "README.md"
 license = { text = "MIT" }
 dependencies = [
     "celery>=5.4.0",
     "django>=5.1.1",
-    "django-cotton>=0.9.36",
+    "django-cotton>=1.0.9",
     "django-countries>=7.6.1",
     "django-environ>=0.11.2",
     "django-phonenumber-field[phonenumberslite]>=8.0.0",
     "django-redis>=5.4.0",
     "flower>=2.0.1",
-    "google-api-python-client>=2.144.0",
+    "google-api-python-client>=2.146.0",
     "Pillow>=10.4.0",
-    "psycopg[binary]>=3.2.1",
+    "psycopg[binary]>=3.2.2",
     "requests-oauthlib>=2.0.0",
     "six>=1.16.0",
     "whitenoise>=6.7.0",
@@ -29,7 +29,10 @@ dev = [
     "django-debug-toolbar>=4.4.6",
     "django-extensions>=3.2.3",
 ]
-linter = ["pre-commit>=3.8.0", "ruff>=0.6.4"]
+lint = [
+    "pre-commit>=3.8.0",
+    "ruff>=0.6.7",
+]
 
 
 [tool.pdm]
