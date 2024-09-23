@@ -1,34 +1,30 @@
 {% load static %}
 {% load i18n %}
 
-{% translate "Home" as Home %}
-{% translate "Owners" as Owners %}
-{% translate "Rentals" as Rentals %}
+<c-vars :items="[
+      ['dashboard', 'dashboard:index'],
+      ['properties', 'dashboard:index'], 
+      ['tenants', 'dashboard:index'], 
+      ['tenancies', 'dashboard:index'], 
+      ['documents', 'dashboard:index'], 
+      ['contacts', 'dashboard:index'], 
+      ['trash', 'dashboard:index'], 
+      ['settings', 'dashboard:index']
+   ]"
+  />
 
 <aside>
   <nav>
     <ul>
-      <li>
-        <c-components.ui.link
-          url="dashboard:index"
-          text="{{ Home }}"
-          icon="home"
-        />
-      </li>
-      <li>
-        <c-components.ui.link
-          url="dashboard:index"
-          text="{{ Owners }}"
-          icon="home"
-        />
-      </li>
-      <li>
-        <c-components.ui.link
-          url="dashboard:index"
-          text="{{ Rentals }}"
-          icon="home"
-        />
-      </li>
+      {% for item in items %}
+        <li>
+          <c-components.ui.link
+            url="{{ item.1 }}"
+            text="{% translate item.0|title %}"
+            icon="{{ item.0 }}"
+          />
+        </li>
+      {% endfor %}
     </ul>
   </nav>
 </aside>
