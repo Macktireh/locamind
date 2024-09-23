@@ -40,7 +40,7 @@ class DjangoBaseRepository(BaseRepository, Generic[T]):
         for key, value in kwargs.items():
             setattr(instance, key, value)
         return self.save(instance)
-    
+
     def get_or_create(self, **kwargs: dict[str, Any]) -> tuple[T, bool]:
         return self.model.objects.get_or_create(**kwargs)
 
@@ -49,4 +49,3 @@ class DjangoBaseRepository(BaseRepository, Generic[T]):
 
     def bulk_update(self, instances: list[T], fields: list[str]) -> list[T]:
         return self.model.objects.bulk_update(instances, fields)
-
