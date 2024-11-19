@@ -2,15 +2,16 @@
 
 @import "./settings/functions";
 @import "./settings/variables";
-@import "./settings/reset";
 @import "./settings/mixins";
+@import "./settings/reset";
 @import "./settings/global";
+
+@import "./layouts/guest";
 
 @import "./pages/dashboard";
 @import "./pages/404";
 
 @import "./components/ui/link";
 @import "./components/ui/toast";
-
-@import "./components/navbar/app";
-@import "./components/sidebar/app";
+@import "./components/ui/sidebar";
+@import "./components/navbar/dashboard";

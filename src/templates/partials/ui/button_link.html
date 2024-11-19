@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load i18n static %}
 
 <a href="{% url url %}" class="btn-link" aria-label="{{ text }}">
   {% if icon %}
@@ -7,6 +6,6 @@
   {% endif %}
 
   {% if text %}
-    <span aria-label="{{ text }}">{% blocktrans %}{{ text }}{% endblocktrans %}</span>
+    <span aria-label="{{ text }}">{% blocktranslate %}{{ text }}{% endblocktranslate %}</span>
   {% endif %}
 </a>

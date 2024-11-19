@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load i18n static %}
 
 {% with primary_color='#2E47C7' text_color='#111111' background_color='#f4f4f4' background_color2='#c2caf0' button_color='#2E47C7' link_color='#2E47C7' %}
   <!DOCTYPE html>
@@ -93,7 +92,7 @@
               <tr>
                 <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                   <p style="margin: 0;">
-                    {% blocktrans %}Congratulations! Your {{ APP_NAME }} account has been successfully activated. You can now log in and start using our services.{% endblocktrans %}
+                    {% blocktranslate %}Congratulations! Your {{ APP_NAME }} account has been successfully activated. You can now log in and start using our services.{% endblocktranslate %}
                   </p>
                 </td>
               </tr>

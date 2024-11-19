@@ -13,17 +13,25 @@ from apps.dashboard.models.proof_identity import ProofIdentity
 
 
 class Tenant(BaseModel):
-    landlord = models.ForeignKey(verbose_name=_("Landlord"), to=Landlord, on_delete=models.CASCADE, related_name="tenants")
-    user = models.ForeignKey(verbose_name=_("User"), to=User, on_delete=models.SET_NULL, related_name="tenants", null=True)
+    landlord = models.ForeignKey(
+        verbose_name=_("Landlord"), to=Landlord, on_delete=models.CASCADE, related_name="tenants"
+    )
+    user = models.ForeignKey(
+        verbose_name=_("User"), to=User, on_delete=models.SET_NULL, related_name="tenants", null=True
+    )
     tenant_type = models.CharField(verbose_name=_("Type"), choices=TenantTypeChoice.choices, max_length=64)
     title = models.CharField(verbose_name=_("Title"), choices=TitleChoice.choices, max_length=8, blank=True, null=True)
     first_name = models.CharField(verbose_name=_("First name"), max_length=128)
     last_name = models.CharField(verbose_name=_("Last name"), max_length=128)
     email = models.EmailField(verbose_name=_("Email"), max_length=128, null=True, blank=True)
     phone_number = PhoneNumberField(verbose_name=_("Phone number"), null=True, blank=True)
-    identity = models.ForeignKey(verbose_name=_("Proof of identity"), to=ProofIdentity, on_delete=models.SET_NULL, null=True)
+    identity = models.ForeignKey(
+        verbose_name=_("Proof of identity"), to=ProofIdentity, on_delete=models.SET_NULL, null=True
+    )
     profession = models.CharField(verbose_name=_("Profession"), max_length=255, null=True, blank=True)
-    income = models.DecimalField(verbose_name=_("Monthly Income"), max_digits=10, decimal_places=2, null=True, blank=True)
+    income = models.DecimalField(
+        verbose_name=_("Monthly Income"), max_digits=10, decimal_places=2, null=True, blank=True
+    )
     employer = models.CharField(verbose_name=_("Employer"), max_length=255, null=True, blank=True)
     address = models.ForeignKey(
         verbose_name=_("Address"), to=Address, on_delete=models.SET_NULL, null=True, related_name="tenants"

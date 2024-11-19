@@ -1,36 +1,39 @@
 from typing import Any
 
-from django.db import transaction
-
 from apps.accounts.models import User
+from apps.accounts.repository import user_repository
 
 
-class UserServices:
-    def __init__(self, model: type[User]) -> None:
-        self.model = model
+class UserService:
+    def get(self, id: int) -> User | None:
+        try:
+            return user_repository.get(id=id)
+        except User.DoesNotExist:
+            return None
 
-    @transaction.atomic
+    def get_by_email(self, email: str) -> User | None:
+        try:
+            return user_repository.get(email=email)
+        except User.DoesNotExist:
+            return None
+
+    def get_by_public_id(self, public_id: str) -> User | None:
+        try:
+            return user_repository.get(public_id=public_id)
+        except User.DoesNotExist:
+            return None
+
     def create(self, first_name: str, last_name: str, email: str, password: str | None, **kwargs) -> User:
-        return self.model.objects.create_user(
-            first_name=first_name, last_name=last_name, email=email, password=password, **kwargs
-        )
-
-    @transaction.atomic
-    def user_create_without_password(self, first_name: str, last_name: str, email: str, **kwargs) -> User:
-        return self.model.objects.create_user(first_name=first_name, last_name=last_name, email=email, **kwargs)
-
-    def update(self, user: User, data: dict[str, Any]) -> User:
-        for key, value in data.items():
-            setattr(user, key, value)
-        user.save()
+        user = user_repository.create(first_name=first_name, last_name=last_name, email=email, **kwargs)
+        if password:
+            user_repository.set_password(user, password)
         return user
 
-    def set_password(self, user: User, password: str) -> None:
-        user.set_password(password)
-        user.save()
+    def update(self, user: User, data: dict[str, Any]) -> User:
+        return user_repository.update(user, **data)
 
     def delete(self, user: User) -> None:
         return user.delete()
 
 
-user_service = UserServices(model=User)
+user_service = UserService()

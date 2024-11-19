@@ -1,6 +1,7 @@
 from typing import Any, Generic, TypeVar
 
 from django.db.models import Model
+from django.db.models.manager import BaseManager
 
 from apps.common.repositories.base_repository import BaseRepository
 
@@ -21,16 +22,10 @@ class DjangoBaseRepository(BaseRepository, Generic[T]):
     def get(self, **kwargs: dict[str, Any]) -> T | None:
         return self.model.objects.get(**kwargs)
 
-    def get_by_id(self, id: int) -> T | None:
-        return self.model.objects.get(id=id)
-
-    def get_by_public_id(self, public_id: str) -> T | None:
-        return self.model.objects.get(public_id=public_id)
-
-    def get_all(self) -> list[T]:
+    def all(self) -> BaseManager[T]:
         return self.model.objects.all()
 
-    def filter(self, **kwargs: dict[str, Any]) -> list[T]:
+    def filter(self, **kwargs: dict[str, Any]) -> BaseManager[T]:
         return self.model.objects.filter(**kwargs)
 
     def delete(self, instance: T) -> None:
@@ -49,3 +44,7 @@ class DjangoBaseRepository(BaseRepository, Generic[T]):
 
     def bulk_update(self, instances: list[T], fields: list[str]) -> list[T]:
         return self.model.objects.bulk_update(instances, fields)
+
+    def set_password(self, user: T, password: str) -> None:
+        user.set_password(password)
+        user.save()

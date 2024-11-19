@@ -48,7 +48,9 @@ class PasswordFieldValidator:
         errors = []
 
         if len(value) < self.min_length:
-            errors.append(_("Password must be at least %(min_length)d characters long.") % {"min_length": self.min_length})
+            errors.append(
+                _("Password must be at least %(min_length)d characters long.") % {"min_length": self.min_length}
+            )
 
         if self.require_digit and not re.search(r"\d", value):
             errors.append(_("Password must contain at least one digit."))

@@ -24,7 +24,9 @@ class PasswordResetConfirmView(View):
         form = ResetPasswordConfirmForm(data=request.POST or None)
         if form.is_valid():
             try:
-                auth_service.password_reset_confirm(request=request, uidb64=uidb64, token=token, payload=form.cleaned_data)
+                auth_service.password_reset_confirm(
+                    request=request, uidb64=uidb64, token=token, payload=form.cleaned_data
+                )
                 return redirect(to="accounts:password_reset_complete")
             except Http404:
                 return render(request=request, template_name="errors/404.html")

@@ -1,4 +1,4 @@
-{% load static %} {% load i18n %}
+{% load i18n static %}
 
 <!DOCTYPE html>
 <html lang="fr" data-theme="{{ DATA_THEME }}">
@@ -21,7 +21,6 @@
         {% endfor %}
       </div>
     {% endif %}
-  
     {{ slot }}
   </body>
 </html>

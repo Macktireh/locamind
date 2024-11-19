@@ -25,17 +25,7 @@ class BaseRepository(ABC):
         pass
 
     @abstractmethod
-    def get_by_id(self, id: int) -> T | None:
-        """Get an instance of the model by the given id."""
-        pass
-
-    @abstractmethod
-    def get_by_public_id(self, public_id: str) -> T | None:
-        """Get an instance of the model by the given public id."""
-        pass
-
-    @abstractmethod
-    def get_all(self) -> list[T]:
+    def all(self) -> list[T]:
         """Get all instances of the model."""
         pass
 
@@ -53,7 +43,7 @@ class BaseRepository(ABC):
     def update(self, instance: T, **kwargs: dict[str, Any]) -> T:
         """Update the instance with the given kwargs."""
         pass
-    
+
     @abstractmethod
     def get_or_create(self, **kwargs: dict[str, Any]) -> tuple[T, bool]:
         """Get an instance of the model by the given kwargs or create a new one."""
@@ -69,3 +59,7 @@ class BaseRepository(ABC):
         """Update multiple instances of the model."""
         pass
 
+    @abstractmethod
+    def set_password(self, user: T, password: str) -> None:
+        """Set the password for the user."""
+        pass

@@ -1,17 +1,16 @@
 {% extends 'accounts/email/base_email.html' %}
-{% load static %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}
-{% blocktrans %}Activate your {{ APP_NAME }} account now!{% endblocktrans %}
+{% blocktranslate %}Activate your {{ APP_NAME }} account now!{% endblocktranslate %}
 {% endblock title %}
 
 {% with primary_color='#2E47C7' text_color='#111111' background_color='#f4f4f4' background_color2='#c2caf0' button_color='#2E47C7' link_color='#2E47C7' %}
-  {% block subtitle %}
+{% block subtitle %}
     {% translate 'Welcome!' %}
-  {% endblock subtitle %}
-  
-  {% block trcontent %}
+{% endblock subtitle %}
+
+{% block trcontent %}
     <tr>
       <td bgcolor="{{ background_color }}" align="center" style="padding: 0px 10px 0px 10px;">
         <table border="0" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px;">
@@ -81,7 +80,7 @@
             <p style="margin: 0;">Vous recevez cet email parce que vous avez créé un compte sur notre application. Si vous n'avez pas créé de compte, vous pouvez ignorer cet email.</p>
           </td>
         </tr>
-  {% endblock trcontent %}
+{% endblock trcontent %}
 {% endwith %}
 {% comment %}
   <tr>

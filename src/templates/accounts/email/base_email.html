@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load i18n static %}
 
 {% with primary_color='#2E47C7' text_color='#111111' background_color='#f4f4f4' background_color2='#c2caf0' button_color='#2E47C7' link_color='#2E47C7' %}
   <!DOCTYPE html>
@@ -10,7 +9,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <title>
         {% block title %}
-        {% endblock %}
+        {% endblock title %}
       </title>
       <style type="text/css">
         /* Généralités */
@@ -90,7 +89,7 @@
                 <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 8px 8px 0px 0px; color: {{ text_color }}; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
                   <h1 style="font-size: 48px; font-weight: 400; margin: 2;">
                     {% block subtitle %}
-                    {% endblock %}
+                    {% endblock subtitle %}
                   </h1>
                 </td>
               </tr>
@@ -98,7 +97,7 @@
           </td>
         </tr>
         {% block trcontent %}
-        {% endblock %}
+        {% endblock trcontent %}
         <tr>
           <td bgcolor="{{ background_color }}" align="center" style="padding: 30px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px;">

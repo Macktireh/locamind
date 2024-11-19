@@ -181,4 +181,3 @@ class ResetPasswordConfirmForm(forms.Form):
         new_password2 = self.cleaned_data.get("new_password2")
         password_confirmation_validator(new_password1, new_password2)
         return new_password2
-

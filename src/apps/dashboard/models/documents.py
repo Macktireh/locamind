@@ -8,7 +8,6 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 
 from apps.common.models import BaseModel
-from apps.dashboard.apps import DashboardConfig
 from apps.dashboard.enum import DocumentTypeChoice
 
 
@@ -20,6 +19,7 @@ def document_upload_path(instance: "Document", filename: str) -> str:
 
 
 def get_content_type_choices() -> Q:
+    from apps.dashboard.apps import DashboardConfig
     from apps.dashboard.models.landlords import Landlord
     from apps.dashboard.models.proof_identity import ProofIdentity
     from apps.dashboard.models.properties import Property
@@ -42,7 +42,9 @@ class Document(BaseModel):
     name = models.CharField(verbose_name=_("Name"), max_length=255)
     description = models.TextField(verbose_name=_("Description"), null=True, blank=True)
     document = models.FileField(verbose_name=_("Document"), upload_to=document_upload_path)
-    content_type = models.ForeignKey(to=ContentType, on_delete=models.CASCADE, limit_choices_to=get_content_type_choices)
+    content_type = models.ForeignKey(
+        to=ContentType, on_delete=models.CASCADE, limit_choices_to=get_content_type_choices
+    )
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey(ct_field="content_type", fk_field="object_id")
 

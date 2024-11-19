@@ -62,3 +62,5 @@ CACHES = {
 
 from config.settings.packages.celery import *  # noqa: F403, E402
 from config.settings.packages.debug_toolbar import *  # noqa: F403, E402
+
+print("local settings")

@@ -35,5 +35,5 @@ class LoginView(View):
                 login(request=request, user=user)
                 return redirect(next_path)
 
-        messages.error(request=request, message=_("Invalid email or password"))
+            messages.error(request=request, message=_("Invalid email or password"))
         return render(request=request, template_name=self.template_name, context={"form": form})

@@ -7,7 +7,7 @@ from django.views import View
 
 @method_decorator(decorator=login_not_required, name="dispatch")
 class LegalView(View):
-    template_name = 'home.html'
+    template_name = "home.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
         context = {}
