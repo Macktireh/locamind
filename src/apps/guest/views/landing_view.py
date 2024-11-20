@@ -7,7 +7,7 @@ from django.views import View
 
 @method_decorator(login_not_required, name="dispatch")
 class LandingView(View):
-    template_name = "landing/index.html"
+    template_name = "guest/landing.html"
 
     def get(self, request: HttpRequest) -> HttpResponse:
         return render(request, template_name=self.template_name)

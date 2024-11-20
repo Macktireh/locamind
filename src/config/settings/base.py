@@ -20,7 +20,7 @@ LOCAL_APPS = [
     "apps.common",
     "apps.dashboard",
     "apps.emails",
-    "apps.landing",
+    "apps.guest",
 ]
 
 THIRD_PARTY_APPS = [

@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
+from collections.abc import Iterable, MutableMapping, Sequence
 from typing import Any, TypeVar
 
 T = TypeVar("T")
 
 
-class BaseRepository(ABC):
+class AbstractBaseRepository(ABC):
     """
     Base repository class for all repositories.
     """
@@ -25,7 +26,7 @@ class BaseRepository(ABC):
         pass
 
     @abstractmethod
-    def all(self) -> list[T]:
+    def get_all(self) -> list[T]:
         """Get all instances of the model."""
         pass
 
@@ -40,26 +41,38 @@ class BaseRepository(ABC):
         pass
 
     @abstractmethod
-    def update(self, instance: T, **kwargs: dict[str, Any]) -> T:
+    def update(self, instance: T, data: dict[str, Any]) -> T:
         """Update the instance with the given kwargs."""
         pass
 
     @abstractmethod
-    def get_or_create(self, **kwargs: dict[str, Any]) -> tuple[T, bool]:
+    def get_or_create(
+        self, defaults: MutableMapping[str, Any] | None = ..., **kwargs: dict[str, Any]
+    ) -> tuple[T, bool]:
         """Get an instance of the model by the given kwargs or create a new one."""
         pass
 
     @abstractmethod
-    def bulk_create(self, instances: list[T]) -> list[T]:
+    def update_or_create(
+        self, defaults: MutableMapping[str, Any] | None = ..., **kwargs: dict[str, Any]
+    ) -> tuple[T, bool]:
+        """Get an instance of the model by the given kwargs or create a new one."""
+        pass
+
+    @abstractmethod
+    def bulk_create(
+        self,
+        objs: Iterable[T],
+        batch_size: int | None = ...,
+        ignore_conflicts: bool = ...,
+        update_conflicts: bool | None = ...,
+        update_fields: Sequence[str] | None = ...,
+        unique_fields: Sequence[str] | None = ...,
+    ) -> list[T]:
         """Create multiple instances of the model."""
         pass
 
     @abstractmethod
-    def bulk_update(self, instances: list[T], fields: list[str]) -> list[T]:
+    def bulk_update(self, objs: Iterable[T], fields: Sequence[str], batch_size: int | None = ...) -> int:
         """Update multiple instances of the model."""
-        pass
-
-    @abstractmethod
-    def set_password(self, user: T, password: str) -> None:
-        """Set the password for the user."""
         pass

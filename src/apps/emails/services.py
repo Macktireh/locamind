@@ -10,25 +10,28 @@ from apps.common.services import model_update
 from apps.common.types import EmailDataType
 from apps.emails.enum import Status
 from apps.emails.models import Email
-from apps.emails.repository import email_repository
+from apps.emails.repository import EmailRepository, email_repository
 from apps.emails.tasks import email_send as email_send_task
 
 
 class EmailService:
+    def __init__(self, email_repository: EmailRepository) -> None:
+        self.email_repository = email_repository
+
     @transaction.atomic
-    @staticmethod
     def create(
+        self,
         payload: EmailDataType,
         template_name: str | None = None,
         context: dict | None = None,
         request: HttpRequest | None = None,
     ) -> Email:
         if not template_name:
-            email, _ = email_repository.get_or_create(**payload)
+            email, _ = self.email_repository.get_or_create(**payload)
             return email
         htmlContent = get_template(template_name).render(context, request)
         payload["html"] = htmlContent
-        email, _ = email_repository.get_or_create(**payload)
+        email, _ = self.email_repository.get_or_create(**payload)
         return email
 
     @transaction.atomic
@@ -51,6 +54,7 @@ class EmailService:
         email, _ = model_update(
             instance=email, fields=["status", "sent_at"], data={"status": Status.SENT, "sent_at": timezone.now()}
         )
+
         return email
 
     @transaction.atomic
@@ -73,3 +77,6 @@ class EmailService:
         with transaction.atomic():
             email_repository.filter(id=email.id).update(status=Status.SENDING)
         transaction.on_commit(lambda: email_send_task.delay(email.id))
+
+
+email_service = EmailService(email_repository=email_repository)
