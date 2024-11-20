@@ -1,4 +1,6 @@
-<footer>
+{% load i18n %}
+
+<footer class="mini-footer">
   <nav>
     <a class="link link-hover">{% translate 'Contact us' %}</a>
     <a class="link link-hover">{% translate 'Terms' %}t</a>
@@ -6,7 +8,7 @@
   </nav>
   <aside>
     <p>
-      Copyright ©{% now 'Y' %} - {% translate 'All right reserved by' %} {{ APP_NAME }}
+      Copyright © {% now 'Y' %} - {% translate 'All right reserved by' %} {{ APP_NAME }}
     </p>
   </aside>
 </footer>

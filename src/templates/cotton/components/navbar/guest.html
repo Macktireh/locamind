@@ -1,0 +1,36 @@
+{% load i18n static %}
+
+<c-vars :items="[
+      ['home', 'dashboard:index'],
+      ['pricing', 'dashboard:index'],
+      ['blog', 'dashboard:index'],
+      ['login', 'dashboard:index'], 
+      ['register', 'dashboard:index'],
+   ]"
+  />
+
+<header class="dash-header">
+  <nav>
+    <a href="{% url 'dashboard:index' %}" class="app-logo">
+      <img
+        src="{% static 'common/images/logo-rounded.png' %}"
+        alt="logo {{ APP_NAME }}"
+      />
+      <h1>{{ APP_NAME }}</h1>
+    </a>
+    <ul>
+      {% for item in items %}
+        <li>
+          <c-components.ui.link
+            url="{{ item.1 }}"
+            text="{% translate item.0|title %}"
+            class="{% if item.0 == 'register' %}btn-primary{% endif %}"
+          />
+        </li>
+      {% endfor %}
+      <li>
+        <c-components.ui.theme />
+      </li>
+    </ul>
+  </nav>
+</header>

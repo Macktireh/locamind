@@ -7,8 +7,8 @@
   top: 0;
   background-color: color($background, $shade: 50, $alpha: 0.7);
   backdrop-filter: blur(15px);
-  border-bottom: 1px solid color($background, $shade: 200, $alpha: 0.5);
-  box-shadow: 0 0 3px 0 color($background, $shade: 200, $alpha: 0.4);
+  border-bottom: 1px solid color($background, $shade: 200, $alpha: 0.8);
+  // box-shadow: 0 0 3px 0 color($background, $shade: 200, $alpha: 0.4);
 
   nav {
     width: 100%;
@@ -30,7 +30,7 @@
       li {
         @extend .flex-center;
         #theme-toggle {
-          padding: 0.8rem;
+          padding: .6rem;
           border-radius: 5px;
           color: color(text);
           &:hover {

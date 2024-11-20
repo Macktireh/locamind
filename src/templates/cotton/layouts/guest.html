@@ -2,10 +2,11 @@
   <c-slot name="title">{{ title }}</c-slot>
 
   <div id="guest-container">
-    <c-components.navbar.dashboard />
+    <c-components.navbar.guest />
     <div class="aside-main">
       {{ slot }}
     </div>
+    <c-components.ui.footer />
   </div>
 
   {{ js }}
