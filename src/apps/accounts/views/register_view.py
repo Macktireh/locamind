@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 
 from apps.accounts.forms import RegisterForm
-from apps.accounts.services.auth_service import auth_service
+from apps.accounts.services.auth import auth_service
 from apps.common.exceptions import UserAlreadyExistsError
 
 

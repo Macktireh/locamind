@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.accounts.forms import UserChangeForm, UserCreationForm
 from apps.accounts.models import Group, User
-from apps.accounts.services.user_service import UserService
+from apps.accounts.services.user import user_service
 from apps.common.types import AuthenticatedHttpRequest
 
 
@@ -115,7 +115,7 @@ class UserAdmin(BaseUserAdmin):
             return super().save_model(request, obj, form, change)
 
         try:
-            UserService().create(**form.cleaned_data)
+            user_service.create(**form.cleaned_data)
         except ValidationError as exc:
             self.message_user(request, str(exc), messages.ERROR)
 

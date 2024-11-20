@@ -1,17 +1,18 @@
 from typing import cast
 
 from django.contrib.auth import authenticate
-from django.http import Http404, HttpRequest
+from django.http import Http404
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
 
 from apps.accounts.models import User
-from apps.accounts.services.token_service import AbstractTokenService, token_service
-from apps.accounts.services.user_service import UserService, user_service
+from apps.accounts.services.token import AbstractTokenService, token_service
+from apps.accounts.services.user import UserService, user_service
+from apps.accounts.types import UserRegistrationPayloadType
 from apps.common.exceptions import EmailNotConfirmError, UserAlreadyExistsError
-from apps.common.types import EmailDataType, UserRegistrationDataType
-from apps.emails.services import EmailService
+from apps.emails.services import EmailService, email_service
+from apps.emails.types import EmailDataType
 
 
 class AuthService:
@@ -27,20 +28,20 @@ class AuthService:
         self.token_service = token_service
         self.email_service = email_service
 
-    def register(self, request: HttpRequest, payload: UserRegistrationDataType) -> User:
+    def register(self, payload: UserRegistrationPayloadType) -> User:
         if self.user_service.get_by_email(email=payload["email"]):
             raise UserAlreadyExistsError(_("User with this email already exists"))
         user = self.user_service.create(**payload)
         self._email_send_register(user)
         return user
 
-    def login(self, request: HttpRequest, email: str, password: str) -> User | None:
+    def login(self, email: str, password: str) -> User | None:
         user = cast(User | None, authenticate(email=email, password=password))
         if user and not user.email_confirmed:
             raise EmailNotConfirmError(_("Please confirm your email address"))
         return user
 
-    def activate(self, request: HttpRequest, uidb64: str, token: str) -> None:
+    def activate(self, uidb64: str, token: str) -> None:
         try:
             public_id = force_str(urlsafe_base64_decode(uidb64))
             user = self.user_service.get_by_public_id(public_id=public_id)
@@ -58,10 +59,10 @@ class AuthService:
             html="",
         )
         self.email_service.email_send_task(
-            payload=email_payload, template_name=self.template_email_activation_success, context={}, request=request
+            payload=email_payload, template_name=self.template_email_activation_success, context={}
         )
 
-    def request_password_reset(self, request: HttpRequest, email: str) -> None:
+    def request_password_reset(self, email: str) -> None:
         if user := self.user_service.get_by_email(email=email):
             email_payload = EmailDataType(
                 to=user,
@@ -78,10 +79,9 @@ class AuthService:
                 payload=email_payload,
                 template_name=self.template_email_request_reset_password,
                 context=context,
-                request=request,
             )
 
-    def password_reset_confirm_form(self, request: HttpRequest, uidb64: str, token: str) -> User | None:
+    def password_reset_confirm_form(self, uidb64: str, token: str) -> User | None:
         try:
             public_id = force_str(urlsafe_base64_decode(uidb64))
             user = self.user_service.get_by_public_id(public_id=public_id)
@@ -93,7 +93,7 @@ class AuthService:
 
         return user
 
-    def password_reset_confirm(self, request: HttpRequest, uidb64: str, token: str, payload: dict) -> User:
+    def password_reset_confirm(self, uidb64: str, token: str, payload: dict) -> User:
         try:
             public_id = force_str(urlsafe_base64_decode(uidb64))
             user = self.user_service.get_by_public_id(public_id=public_id)
@@ -116,7 +116,7 @@ class AuthService:
         )
         return user
 
-    def request_activation(self, request: HttpRequest, email: str) -> None:
+    def request_activation(self, email: str) -> None:
         if (user := self.user_service.get_by_email(email=email)) and not user.email_confirmed:
             self._email_send_register(user)
 
@@ -135,4 +135,4 @@ class AuthService:
         self.email_service.email_send_task(email_payload, self.template_email_activation, context)
 
 
-auth_service = AuthService(user_service=user_service, token_service=token_service, email_service=EmailService)
+auth_service = AuthService(user_service=user_service, token_service=token_service, email_service=email_service)

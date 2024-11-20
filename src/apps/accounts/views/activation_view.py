@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 
-from apps.accounts.services.auth_service import auth_service
+from apps.accounts.services.auth import auth_service
 
 
 @method_decorator(decorator=login_not_required, name="dispatch")

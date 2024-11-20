@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from simplesocialauthlib.providers.google import GoogleSocialAuth
 
-from apps.accounts.services.user_service import user_service
+from apps.accounts.services.user import user_service
 
 
 @method_decorator(decorator=login_not_required, name="dispatch")

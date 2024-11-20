@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from apps.accounts.forms import ResetPasswordConfirmForm
-from apps.accounts.services.auth_service import auth_service
+from apps.accounts.services.auth import auth_service
 
 
 @method_decorator(decorator=login_not_required, name="dispatch")
