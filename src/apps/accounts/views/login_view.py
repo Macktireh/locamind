@@ -26,7 +26,7 @@ class LoginView(View):
 
         if form.is_valid():
             try:
-                user = auth_service.login(request=request, **form.cleaned_data)
+                user = auth_service.login(**form.cleaned_data)
             except EmailNotConfirmError as e:
                 messages.warning(request=request, message=_(e.message))
                 return redirect(to="accounts:request_activate")

@@ -15,9 +15,9 @@ class ActivateView(View):
 
     def get(self, request: HttpRequest, uidb64: str, token: str) -> HttpResponse:
         try:
-            auth_service.activate(request=request, uidb64=uidb64, token=token)
+            auth_service.activate(uidb64=uidb64, token=token)
         except Http404:
             return render(request=request, template_name="errors/404.html")
 
         messages.success(request=request, message=_("Account activated successfully."))
-        return render(request=request, template_name=self.template_name, context={})
+        return render(request=request, template_name=self.template_name)

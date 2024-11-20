@@ -5,11 +5,11 @@ from django.template.loader import get_template
 from django.utils import timezone
 
 from apps.common.exceptions import ApplicationError
-from apps.common.types import EmailDataType
 from apps.emails.enum import Status
 from apps.emails.models import Email
 from apps.emails.repository import EmailRepository, email_repository
 from apps.emails.tasks import email_send_with_celery
+from apps.emails.types import EmailDataType
 
 
 class EmailService:

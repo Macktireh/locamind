@@ -23,7 +23,7 @@ class RegisterView(View):
 
         if form.is_valid():
             try:
-                auth_service.register(request=request, **form.get_data)
+                auth_service.register(payload=form.get_data)
                 messages.success(request=request, message=_("Registration successful. Please activate your account."))
                 return redirect("accounts:register_done")
             except UserAlreadyExistsError as e:

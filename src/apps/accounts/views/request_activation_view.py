@@ -18,6 +18,6 @@ class RequestActivateView(View):
     def post(self, request: HttpRequest) -> HttpResponseRedirect | HttpResponsePermanentRedirect | HttpResponse:
         form = RequestPasswordResetForm(data=request.POST or None)
         if form.is_valid():
-            auth_service.request_activation(request=request, email=form.cleaned_data["email"])
+            auth_service.request_activation(email=form.cleaned_data["email"])
             return redirect(to="accounts:register_done")
         return render(request=request, template_name=self.template_name, context={"form": form})

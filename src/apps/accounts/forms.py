@@ -1,5 +1,3 @@
-from typing import Any
-
 from django import forms
 from django.contrib.auth.forms import UserChangeForm as BaseUserChangeForm
 from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
@@ -98,7 +96,7 @@ class RegisterForm(forms.Form):
     )
 
     @property
-    def get_data(self) -> dict[str, Any]:
+    def get_data(self) -> dict[str, str | bool | None]:
         payload = self.cleaned_data
         payload.pop("password2")
         payload["password"] = payload.pop("password1")
