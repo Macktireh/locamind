@@ -22,7 +22,7 @@ class LoginView(View):
 
     def post(self, request: HttpRequest) -> HttpResponseRedirect | HttpResponsePermanentRedirect | HttpResponse:
         form = LoginForm(data=request.POST or None)
-        next_path = request.GET.get("next", reverse("landing:index"))
+        next_path = request.GET.get("next", reverse("dashboard:index"))
 
         if form.is_valid():
             try:

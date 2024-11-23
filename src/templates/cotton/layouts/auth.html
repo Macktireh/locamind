@@ -1,0 +1,17 @@
+<c-layouts.base>
+  <c-slot name="title">{{ title }}</c-slot>
+
+  <div id="auth-container">
+    <header>
+      <nav>
+        <c-components.ui.logo url="guest:landing" />
+        <c-components.ui.theme />
+      </nav>
+    </header>
+
+    <main>{{ slot }}</main>
+  </div>
+
+  {{ js }} 
+  {% include 'partials/js.html' %}
+</c-layouts.base>

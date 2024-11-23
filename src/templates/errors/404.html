@@ -1,41 +1,31 @@
-{% extends 'base/base_empty.html' %}
-
 {% load i18n static %}
-
-{% block title %}
-  {% translate 'Page not found' %}
-{% endblock title %}
-
-{% block css %}
-  <link rel="stylesheet" href="{% static 'common/css/style.css' %}" />
-{% endblock css %}
-
-{% block content %}
+<c-layouts.base>
+  <c-slot name="title">{% translate 'Page not found' %}</c-slot>
   <div class="Error404">
     <div id="error404">
       <div class="content">
         <h2>404</h2>
         <h4>{% translate 'Opps! page not found' %}</h4>
         <p>
-          {% translate 'The page you are looking for does not exist. You may have mistyped the url address or the page may have been moved.' %}
+          {% translate 'The page you are looking for does not exist. You may
+          have mistyped the url address or the page may have been moved.' %}
         </p>
-        <a href="{% url 'landing:index' %}"><span>{% translate 'Back to home page' %}</span></a>
+        <a href="{% url 'guest:landing' %}"
+          ><span>{% translate 'Back to home page' %}</span></a
+        >
       </div>
     </div>
   </div>
-{% endblock content %}
-
-{% block js %}
   <script>
-    const container = document.getElementById('error404')
-    
+    const container = document.getElementById("error404");
+
     window.onmousemove = (e) => {
-      let x = -e.clientX / 5
-      let y = -e.clientY / 5
+      let x = -e.clientX / 5;
+      let y = -e.clientY / 5;
       if (container) {
-        container.style.backgroundPositionX = x + 'px'
-        container.style.backgroundPositionY = y + 'px'
+        container.style.backgroundPositionX = x + "px";
+        container.style.backgroundPositionY = y + "px";
       }
-    }
+    };
   </script>
-{% endblock js %}
+</c-layouts.base>

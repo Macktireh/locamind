@@ -1,0 +1,32 @@
+{% load i18n static %}
+
+<!-- register.html -->
+
+<c-layouts.auth>
+  <c-slot name="title">
+    {% blocktranslate %}Register for free with Locamind and start managing your properties.{% endblocktranslate %}
+  </c-slot>
+
+  <h2>{% translate "Register for free with Locamind" %}</h2>
+  <p>{% translate "Already have an account?" %} <a href="{% url 'accounts:login' %}">{% translate "Login here" %}</a></p>
+  <section>
+    <c-components.ui.alert_message />
+    <form method="post" action="{% url 'accounts:register' %}">
+      {% csrf_token %}
+      {% for field in form %}
+        {% if field.name != 'accepted_terms' %}
+          <c-components.ui.dj-input :field=field :id_for_label=field.id_for_label :errors=field.errors />
+        {% endif %}
+      {% endfor %}
+      <label class="accepted_terms">
+        {{ form.accepted_terms }}
+        <p>{% translate 'I accept' %} <a href="">{% translate 'the terms and conditions' %}</a></p>
+      </label>
+      <button type="submit">{% translate "Register" %}</button>
+    </form>
+    <div class="divider">
+      {% translate "or" %}
+    </div>
+    {% include 'accounts/partials/social_button.html' %}
+  </section>
+</c-layouts.auth>

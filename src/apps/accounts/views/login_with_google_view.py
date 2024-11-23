@@ -29,7 +29,7 @@ class SignInWithGoogleView(View):
                 first_name=user_data["first_name"], last_name=user_data["last_name"], email=user_data["email"]
             )
             login(request=request, user=user)
-            return redirect("landing:index")
+            return redirect("guest:landing")
         except Exception as e:
             messages.error(request=request, message=str(e.message))
             return redirect("accounts:login")

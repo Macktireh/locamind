@@ -5,5 +5,5 @@ from apps.guest.views.landing_view import LandingView
 app_name = "guest"
 
 urlpatterns = [
-    path(route="", view=LandingView.as_view(), name="index"),
+    path(route="", view=LandingView.as_view(), name="landing"),
 ]

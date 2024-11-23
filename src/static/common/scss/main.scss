@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "sass:map";
 
 @import "./settings/functions";
 @import "./settings/variables";
@@ -8,11 +9,14 @@
 
 @import "./layouts/guest";
 
+@import "./pages/auth";
 @import "./pages/dashboard";
 @import "./pages/404";
 
-@import "./components/ui/link";
-@import "./components/ui/toast";
-@import "./components/ui/sidebar";
 @import "./components/navbar/dashboard";
 @import "./components/ui/footer";
+@import "./components/ui/input";
+@import "./components/ui/link";
+@import "./components/ui/logo";
+@import "./components/ui/sidebar";
+@import "./components/ui/toast";
