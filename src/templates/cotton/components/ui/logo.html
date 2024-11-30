@@ -1,0 +1,8 @@
+{% load static %}
+<a href="{% url url %}" class="app-logo">
+  <img
+    src="{% static 'common/images/logo-rounded.png' %}"
+    alt="logo {{ APP_NAME }}"
+  />
+  <h1>{{ APP_NAME }}</h1>
+</a>

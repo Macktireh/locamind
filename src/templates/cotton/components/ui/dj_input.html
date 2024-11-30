@@ -1,0 +1,11 @@
+<div class="input-container">
+  <label for="{{ id_for_label }}" class="{% if errors %}input-error{% endif %}">
+    <c-components.ui.icon name="{{ icon }}" />
+    {{ field }}
+  </label>
+  {% if errors %}
+    {% for error in errors %}
+      <p class="errors">{{ error }}</p>
+    {% endfor %}
+  {% endif %}
+</div>

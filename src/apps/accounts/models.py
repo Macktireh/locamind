@@ -40,4 +40,3 @@ class User(BaseModel, AbstractUser):
 class Group(AuthGroup):
     class Meta:
         proxy = True
-

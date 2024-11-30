@@ -1,0 +1,42 @@
+.input-container {
+  width: 100%;
+  max-width: 400px;
+  // padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  label {
+    @include flex($jc: start);
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid color($background, $shade: 300, $alpha: 0.8);
+    outline: 2px solid transparent;
+    border-radius: 5px;
+    svg {
+      @include size(18px);
+    }
+    input {
+      border: none;
+      outline: none;
+      flex: 1;
+      background-color: transparent;
+      color: color($text);
+    }
+    &:focus-within {
+      outline: 2px solid color($background, $shade: 300, $alpha: 0.8);
+      outline-offset: 2px;
+    }
+    &.input-error {
+      border-color: color($danger);
+    }
+    &.input-error:focus-within {
+      outline-color: color($danger);
+      outline-offset: 2px;
+    }
+  }
+  p.errors {
+    color: color($danger) !important;
+    margin-left: 4px;
+    font-size: 0.8rem;
+  }
+}

@@ -12,7 +12,9 @@ class Receipt(BaseModel):
     A receipt is a document that represents a payment made by a tenant to a landlord.
     """
 
-    property = models.ForeignKey(verbose_name=_("Property"), to=Property, on_delete=models.CASCADE, related_name="receipts")
+    property = models.ForeignKey(
+        verbose_name=_("Property"), to=Property, on_delete=models.CASCADE, related_name="receipts"
+    )
     tenancy = models.ForeignKey(
         verbose_name=_("Tenancy"),
         to=Tenancy,

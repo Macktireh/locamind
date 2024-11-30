@@ -1,2 +1,3 @@
+djade
 pre-commit
 ruff

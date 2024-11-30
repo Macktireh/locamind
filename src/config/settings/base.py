@@ -20,7 +20,7 @@ LOCAL_APPS = [
     "apps.common",
     "apps.dashboard",
     "apps.emails",
-    "apps.landing",
+    "apps.guest",
 ]
 
 THIRD_PARTY_APPS = [
@@ -113,7 +113,7 @@ USE_TZ = True
 
 
 LOGIN_URL = "accounts:login"
-LOGIN_REDIRECT_URL = "landing:index"
+LOGIN_REDIRECT_URL = "dashboard:index"
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 # Static files (CSS, JavaScript, Images)

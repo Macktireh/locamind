@@ -1,4 +1,6 @@
-<a href="{% url url %}" class="btn-link" title="{{ text }}">
+<c-vars text icon class />
+
+<a href="{% url url %}" class="btn-link {% if class %} {{ class }}{% endif %}" title="{{ text }}">
   {% if icon %}
     <c-components.ui.icon name="{{ icon }}" />
   {% endif %}

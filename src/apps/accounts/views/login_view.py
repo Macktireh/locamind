@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 
 from apps.accounts.forms import LoginForm
-from apps.accounts.services.auth_service import auth_service
+from apps.accounts.services.auth import auth_service
 from apps.common.exceptions import EmailNotConfirmError
 
 
@@ -22,11 +22,11 @@ class LoginView(View):
 
     def post(self, request: HttpRequest) -> HttpResponseRedirect | HttpResponsePermanentRedirect | HttpResponse:
         form = LoginForm(data=request.POST or None)
-        next_path = request.GET.get("next", reverse("landing:index"))
+        next_path = request.GET.get("next", reverse("dashboard:index"))
 
         if form.is_valid():
             try:
-                user = auth_service.login(request=request, **form.cleaned_data)
+                user = auth_service.login(**form.cleaned_data)
             except EmailNotConfirmError as e:
                 messages.warning(request=request, message=_(e.message))
                 return redirect(to="accounts:request_activate")
@@ -35,5 +35,5 @@ class LoginView(View):
                 login(request=request, user=user)
                 return redirect(next_path)
 
-        messages.error(request=request, message=_("Invalid email or password"))
+            messages.error(request=request, message=_("Invalid email or password"))
         return render(request=request, template_name=self.template_name, context={"form": form})

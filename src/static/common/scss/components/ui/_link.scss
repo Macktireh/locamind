@@ -2,11 +2,18 @@ button, a.btn-link {
     @extend .flex-center;
     gap: 0.5rem;
     font-weight: 600;
-    padding: 0.8rem;
+    padding: 0.5rem 0.8rem;
     border-radius: 5px;
     color: color(text);
     transition: all 0.2s ease-in-out;
     &:hover {
       background-color: color($neutral, $shade: 300, $alpha: 0.5);
+    }
+    &.btn-primary {
+      background-color: color(primary, $alpha: 0.8);
+      color: color(white);
+      &:hover {
+        background-color: color(primary, $shade: 300);
+      }
     }
   }

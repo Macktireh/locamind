@@ -89,4 +89,3 @@ class ReceiptStatusChoice(models.TextChoices):
     PAID = "paid", _("Paid")
     PARTIALLY_PAID = "partially_paid", _("Partially paid")
     PENDING = "pending", _("Pending")
-

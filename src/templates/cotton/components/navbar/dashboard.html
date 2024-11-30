@@ -1,4 +1,4 @@
-{% load static %} {% load i18n %}
+{% load i18n static %}
 
 {% translate "Messages" as Messages %} 
 {% translate "Notifications" as Notifications %} 
@@ -6,13 +6,7 @@
 
 <header class="dash-header">
   <nav>
-    <a href="{% url 'dashboard:index' %}" class="app-logo">
-      <img
-        src="{% static 'common/images/logo-rounded.png' %}"
-        alt="logo {{ APP_NAME }}"
-      />
-      <h1>{{ APP_NAME }}</h1>
-    </a>
+    <c-components.ui.logo url="guest:landing" />
     <ul>
       <li>
         <c-components.ui.link
@@ -30,7 +24,7 @@
       </li>
       <li>
         <c-components.ui.link
-          url="dashboard:index"
+          url="accounts:logout"
           text="{{ Profile }}"
           icon="user"
         />

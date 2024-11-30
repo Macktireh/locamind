@@ -1,34 +1,39 @@
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
-from django.http import HttpRequest
 from django.template.loader import get_template
 from django.utils import timezone
 
 from apps.common.exceptions import ApplicationError
-from apps.common.services import model_update
-from apps.common.types import EmailDataType
+from apps.emails.enum import Status
 from apps.emails.models import Email
+from apps.emails.repository import EmailRepository, email_repository
+from apps.emails.tasks import email_send_with_celery
+from apps.emails.types import EmailDataType
 
 
-class EmailServices:
+class EmailService:
+    def __init__(self, email_repository: EmailRepository) -> None:
+        self.email_repository = email_repository
+
     @transaction.atomic
-    @staticmethod
     def create(
-        payload: EmailDataType, template_name: str | None = None, context: dict | None = None, request: HttpRequest | None = None
+        self,
+        payload: EmailDataType,
+        template_name: str | None = None,
+        context: dict | None = None,
     ) -> Email:
         if not template_name:
-            email, _ = Email.objects.get_or_create(**payload)
+            email, _ = self.email_repository.get_or_create(**payload)
             return email
-        htmlContent = get_template(template_name).render(context, request)
+        htmlContent = get_template(template_name).render(context)
         payload["html"] = htmlContent
-        email, _ = Email.objects.get_or_create(**payload)
+        email, _ = self.email_repository.get_or_create(**payload)
         return email
 
     @transaction.atomic
-    @staticmethod
-    def email_send(email: Email):
-        if email.status != Email.Status.SENDING:
+    def email_send(self, email: Email) -> Email:
+        if email.status != Status.SENDING:
             raise ApplicationError(f"Cannot send non-ready emails. Current status is {email.status}")
 
         subject = email.subject
@@ -41,17 +46,27 @@ class EmailServices:
         msg.attach_alternative(html, "text/html")
 
         msg.send()
-
-        email, _ = model_update(
-            instance=email, fields=["status", "sent_at"], data={"status": Email.Status.SENT, "sent_at": timezone.now()}
-        )
+        email = self.email_repository.update(instance=email, data={"status": Status.SENT, "sent_at": timezone.now()})
         return email
 
     @transaction.atomic
-    @staticmethod
-    def email_failed(email: Email) -> Email:
-        if email.status != Email.Status.SENDING:
+    def email_failed(self, email: Email) -> Email:
+        if email.status != Status.SENDING:
             raise ApplicationError(f"Cannot fail non-sending emails. Current status is {email.status}")
 
-        email, _ = model_update(instance=email, fields=["status"], data={"status": Email.Status.FAILED})
+        email = self.email_repository.update(instance=email, data={"status": Status.FAILED})
         return email
+
+    def email_send_task(
+            self,
+        payload: EmailDataType,
+        template_name: str | None = None,
+        context: dict | None = None,
+    ) -> None:
+        email = EmailService.create(payload=payload, template_name=template_name, context=context)
+        with transaction.atomic():
+            self.email_repository.filter(id=email.id).update(status=Status.SENDING)
+        transaction.on_commit(lambda: email_send_with_celery.delay(email))
+
+
+email_service = EmailService(email_repository=email_repository)

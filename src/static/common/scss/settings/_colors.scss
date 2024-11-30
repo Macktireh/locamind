@@ -329,13 +329,13 @@ $theme: $light;
 
 // Set custom CSS variables for each theme
 :root {
-  @each $name, $color in map-get($map: $themes, $key: $theme) {
+  @each $name, $color in map.get($map: $themes, $key: $theme) {
     --color-#{$name}: #{extract-rgb($color)};
   }
 }
 [data-theme="#{get-opposite-theme($theme)}"] {
   @each $name,
-    $color in map-get($map: $themes, $key: #{get-opposite-theme($theme)})
+    $color in map.get($map: $themes, $key: #{get-opposite-theme($theme)})
   {
     --color-#{$name}: #{extract-rgb($color)};
   }

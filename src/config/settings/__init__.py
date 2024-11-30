@@ -9,3 +9,7 @@ elif DJANGO_ENVIRONMENT == DjangoEnvironment.TESTING:
     from config.settings.testing import *  # noqa: F403
 else:
     from config.settings.local import *  # noqa: F403
+
+
+print("DEBUG MODE: ", DEBUG)
+print("DJANGO_ENVIRONMENT: ", DJANGO_ENVIRONMENT)

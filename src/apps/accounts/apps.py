@@ -3,6 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class AccountsConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.accounts'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "apps.accounts"
     verbose_name = _("Authentication and Authorization")

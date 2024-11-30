@@ -1,0 +1,9 @@
+{% load i18n %}
+
+<form method="post" action="">
+  {% csrf_token %}
+  <button type="submit" class="social-button">
+    <img src="https://raw.githubusercontent.com/Macktireh/Media/refs/heads/main/images/google.png" alt="Google" />
+    {% translate "Login with Google" %}
+  </button>
+</form>

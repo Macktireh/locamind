@@ -6,7 +6,7 @@ handler404 = "apps.common.views.error_404_view"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("apps.landing.urls")),
+    path("", include("apps.guest.urls")),
     path("accounts/", include("apps.accounts.urls")),
     path("dashboard/", include("apps.dashboard.urls")),
 ]
