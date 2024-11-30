@@ -1,0 +1,112 @@
+#auth-container {
+  display: flex;
+  header {
+    width: 100%;
+    height: 65px;
+    padding: 5px 10px;
+    display: flex;
+    border-bottom: 1px solid color($background, $shade: 200, $alpha: 0.8);
+    nav {
+      @include flex($jc: space-between);
+      gap: 1rem;
+    }
+  }
+  main {
+    @include size(100%);
+    @extend .flex-center;
+    flex-direction: column;
+    gap: 1rem;
+    .info-auth {
+      color: color($text, $alpha: 0.6);
+      font-size: 0.9rem;
+    }
+    a {
+      text-decoration: underline;
+      &:hover {
+        color: color($primary);
+      }
+    }
+    section {
+      width: 100%;
+      max-width: 400px;
+      @include flex($direction: column, $at: start);
+      gap: 1rem;
+      // background-color: color($background, $shade: 100);
+      border-radius: 5px;
+      padding: 1rem;
+      .alert-message {
+        width: 100%;
+        @extend .flex-center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        p {
+          color: color($danger);
+        }
+      }
+      form {
+        flex: 1;
+        width: 100%;
+        @include flex($direction: column, $at: start);
+        gap: 0.5rem;
+        button {
+          width: 100%;
+          @extend .flex-center;
+          color: color($white);
+          background-color: color($primary);
+          &.social-button {
+            color: color($text);
+            background-color: transparent;
+            border: 1px solid color($primary);
+            padding: 0.5rem;
+            border-radius: 5px;
+            img {
+              @include size(1.5rem);
+              margin-right: 0.5rem;
+            }
+            &:hover {
+              color: color($white);
+              background-color: color($primary, $shade: 300);
+            }
+          }
+        }
+        label.accepted_terms {
+          width: 100%;
+          margin: 0.5rem 0;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+          input[type="checkbox"] {
+            @include size(1rem);
+            margin-right: 0.5rem;
+          }
+        }
+      }
+      .divider {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-self: stretch;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        height: 1rem;
+        white-space: nowrap;
+        &::before,
+        &::after {
+          content: "";
+          flex: 1;
+          height: 1px;
+          background-color: color($neutral, $shade: 300);
+        }
+        &::before {
+          margin-right: 0.5rem;
+        }
+        &::after {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+}

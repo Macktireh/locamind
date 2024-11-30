@@ -3,47 +3,45 @@ name = "Locamind"
 version = "0.1.0"
 description = "Free online rental property management service for private landlords."
 authors = [{ name = "Macktireh", email = "mack.abdisoubaneh@gmail.com" }]
-requires-python = ">=3.12.*"
+requires-python = ">=3.12"
 readme = "README.md"
 license = { text = "MIT" }
 dependencies = [
     "celery>=5.4.0",
-    "django>=5.1.1",
-    "django-cotton>=1.0.9",
+    "django>=5.1.3",
+    "django-cotton>=1.3.0",
     "django-countries>=7.6.1",
     "django-environ>=0.11.2",
     "django-phonenumber-field[phonenumberslite]>=8.0.0",
     "django-redis>=5.4.0",
     "flower>=2.0.1",
-    "google-api-python-client>=2.146.0",
-    "Pillow>=10.4.0",
-    "psycopg[binary]>=3.2.2",
-    "requests-oauthlib>=2.0.0",
+    "Pillow>=11.0.0",
+    "psycopg[binary]>=3.2.3",
+    "simplesocialauthlib>=0.2.2",
     "six>=1.16.0",
-    "whitenoise>=6.7.0",
+    "whitenoise>=6.8.2"
 ]
 
-[tool.pdm.dev-dependencies]
+[dependency-groups]
 dev = [
-    "django-browser-reload>=1.15.0",
+    "django-browser-reload>=1.17.0",
     "django-debug-toolbar>=4.4.6",
     "django-extensions>=3.2.3",
 ]
 lint = [
-    "pre-commit>=3.8.0",
-    "ruff>=0.6.7",
+    "djade>=1.3.2",
+    "pre-commit>=4.0.1",
+    "ruff>=0.7.4",
 ]
-
 
 [tool.pdm]
 distribution = false
-
 
 [tool.pdm.scripts]
 newapp = "python src/manage.py startapp"
 makemigrations = "python src/manage.py makemigrations"
 migrate = "python src/manage.py migrate"
-start = "python src/manage.py runserver"
+dev = "python src/manage.py runserver"
 test = "python src/manage.py test -v 2"
 shell = "python src/manage.py shell"
 createsuperuser = "python src/manage.py createsuperuser --email=admin@example.com --first_name=Admin --last_name=AD"
@@ -55,15 +53,15 @@ tailwind = "pnpm run tailwind"
 rufffix = "ruff check --fix"
 ruffformat = "ruff format"
 ruffcheck = "ruff check"
+djade = "djade.EXE --target-version 5.1 templates/**/*.html"
 exports = "pdm export -f requirements --without-hashes"
 docker = "docker compose up --build"
 mmm = { composite = ["makemigrations", "migrate"] }
-dev = { composite = ["tailwind", "start"] }
-ruff = { composite = ["rufffix", "ruffformat", "ruffcheck"] }
+ruff = { composite = ["ruffformat", "rufffix"] }
 
 
 [tool.ruff]
-line-length = 130
+line-length = 120
 exclude = [
     ".bzr",
     ".direnv",

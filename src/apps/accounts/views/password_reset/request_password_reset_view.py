@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from apps.accounts.forms import RequestPasswordResetForm
-from apps.accounts.services.auth_service import auth_service
+from apps.accounts.services.auth import auth_service
 
 
 @method_decorator(decorator=login_not_required, name="dispatch")
@@ -18,7 +18,7 @@ class RequestPasswordResetView(View):
     def post(self, request: HttpRequest) -> HttpResponseRedirect | HttpResponsePermanentRedirect | HttpResponse:
         form = RequestPasswordResetForm(data=request.POST or None)
         if form.is_valid():
-            auth_service.request_password_reset(request=request, email=form.cleaned_data["email"])
+            auth_service.request_password_reset(email=form.cleaned_data["email"])
             return redirect(to="accounts:request_password_reset_done")
         context = {
             "form": form,

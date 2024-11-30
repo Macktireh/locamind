@@ -1,8 +1,0 @@
-<button x-data x-init="$store.theme.syncTheme()" id="theme-toggle" @click="$store.theme.toggle()" x-cloak data-theme-toggle aria-label="Toggle theme" title="Toggle theme" style="cursor: pointer;">
-  <div x-show="!$store.theme.isDark()" style="cursor: pointer;">
-    {% include 'partials/icon.html' with name='light' %}
-  </div>
-  <div x-show="$store.theme.isDark()">
-    {% include 'partials/icon.html' with name='dark' %}
-  </div>
-</button>

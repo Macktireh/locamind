@@ -22,7 +22,9 @@ class Migration(migrations.Migration):
                 ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
                 (
                     "public_id",
-                    models.UUIDField(db_index=True, default=uuid.uuid4, editable=False, unique=True, verbose_name="Public ID"),
+                    models.UUIDField(
+                        db_index=True, default=uuid.uuid4, editable=False, unique=True, verbose_name="Public ID"
+                    ),
                 ),
                 (
                     "created_at",

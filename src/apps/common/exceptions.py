@@ -14,5 +14,5 @@ class UserAlreadyExistsError(ApplicationError):
     pass
 
 
-class TokenIsInvalidError(ApplicationError):
+class TokenInvalidError(ApplicationError):
     pass

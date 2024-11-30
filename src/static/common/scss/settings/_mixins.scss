@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+@mixin size($size) {
+  width: $size;
+  height: $size;
+}
+
 @mixin flex($direction: row, $jc: center, $at: center) {
   display: flex;
   flex-direction: $direction;

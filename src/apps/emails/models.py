@@ -3,15 +3,10 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.accounts.models import User
 from apps.common.models import BaseModel
+from apps.emails.enum import Status
 
 
 class Email(BaseModel):
-    class Status(models.TextChoices):
-        READY = "READY", _("Ready")
-        SENDING = "SENDING", _("Sending")
-        SENT = "SENT", _("Sent")
-        FAILED = "FAILED", _("Failed")
-
     status = models.CharField(max_length=255, db_index=True, choices=Status.choices, default=Status.READY)
     to = models.ForeignKey(User, on_delete=models.CASCADE, related_name="emails")
     subject = models.CharField(max_length=255)

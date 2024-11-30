@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 
-from apps.accounts.services.auth_service import auth_service
+from apps.accounts.services.auth import auth_service
 
 
 @method_decorator(decorator=login_not_required, name="dispatch")
@@ -15,9 +15,9 @@ class ActivateView(View):
 
     def get(self, request: HttpRequest, uidb64: str, token: str) -> HttpResponse:
         try:
-            auth_service.activate(request=request, uidb64=uidb64, token=token)
+            auth_service.activate(uidb64=uidb64, token=token)
         except Http404:
             return render(request=request, template_name="errors/404.html")
 
         messages.success(request=request, message=_("Account activated successfully."))
-        return render(request=request, template_name=self.template_name, context={})
+        return render(request=request, template_name=self.template_name)

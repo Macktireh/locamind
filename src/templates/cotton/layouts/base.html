@@ -1,4 +1,4 @@
-{% load static %} {% load i18n %}
+{% load i18n static %}
 
 <!DOCTYPE html>
 <html lang="fr" data-theme="{{ DATA_THEME }}">
@@ -14,14 +14,7 @@
   </head>
 
   <body>
-    {% if messages %}
-      <div class="toast-app">
-        {% for message in messages %}
-          <c-components.ui.toast message="{{ message }}" tags="{{ message.tags }}" /> 
-        {% endfor %}
-      </div>
-    {% endif %}
-  
+    {{ toast }}
     {{ slot }}
   </body>
 </html>

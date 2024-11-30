@@ -13,14 +13,18 @@ class Address(BaseModel):
         max_length=128,
         blank=True,
         null=True,
-        help_text=_("The building name or identifier, e.g. 'A', 'Main', 'Side', or '1'. Leave blank if not applicable."),
+        help_text=_(
+            "The building name or identifier, e.g. 'A', 'Main', 'Side', or '1'. Leave blank if not applicable."
+        ),
     )
     entrance = models.CharField(
         verbose_name=_("Entrance"),
         max_length=128,
         blank=True,
         null=True,
-        help_text=_("The entrance name or identifier, e.g. 'A', 'Main', 'Side', or '1'. Leave blank if not applicable."),
+        help_text=_(
+            "The entrance name or identifier, e.g. 'A', 'Main', 'Side', or '1'. Leave blank if not applicable."
+        ),
     )
     floor = models.CharField(
         verbose_name=_("Floor"),

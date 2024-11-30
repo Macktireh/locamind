@@ -6,9 +6,8 @@ django-environ
 django-phonenumber-field[phonenumberslite]
 django-redis
 flower
-google-api-python-client
 Pillow
 psycopg[binary]
-requests-oauthlib
+simplesocialauthlib
 six
 whitenoise

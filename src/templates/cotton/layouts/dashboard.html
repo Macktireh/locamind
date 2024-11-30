@@ -1,6 +1,16 @@
 <c-layouts.base>
   <c-slot name="title">{{ title }}</c-slot>
 
+  <c-slot name="toast">
+    {% if messages %}
+        <div class="toast-app">
+          {% for message in messages %}
+            <c-components.ui.toast message="{{ message }}" tags="{{ message.tags }}" /> 
+          {% endfor %}
+        </div>
+      {% endif %}
+  </c-slot>
+
   <div id="dashboard-container">
     <c-components.navbar.dashboard />
     <div class="aside-main">

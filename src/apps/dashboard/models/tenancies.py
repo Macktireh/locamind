@@ -11,8 +11,12 @@ from apps.dashboard.models.tenants import Tenant
 
 
 class Tenancy(BaseModel):
-    landlord = models.ForeignKey(verbose_name=_("Landlord"), to=Landlord, on_delete=models.CASCADE, related_name="tenancies")
-    property = models.ForeignKey(verbose_name=_("Property"), to=Property, on_delete=models.CASCADE, related_name="tenancies")
+    landlord = models.ForeignKey(
+        verbose_name=_("Landlord"), to=Landlord, on_delete=models.CASCADE, related_name="tenancies"
+    )
+    property = models.ForeignKey(
+        verbose_name=_("Property"), to=Property, on_delete=models.CASCADE, related_name="tenancies"
+    )
     type = models.CharField(verbose_name=_("Type"), max_length=128, choices=TenancyTypeChoice.choices)
     start_date = models.DateField(verbose_name=_("Start date"))
     end_date = models.DateField(verbose_name=_("End date"), null=True, blank=True)
@@ -26,13 +30,17 @@ class Tenancy(BaseModel):
     payement_method = models.CharField(
         verbose_name=_("Payment Method"), choices=PaymentMethodChoice.choices, max_length=64, blank=True, null=True
     )
-    payement_day = models.PositiveSmallIntegerField(verbose_name=_("Payment day"), choices=[(i, i) for i in range(1, 29)])
+    payement_day = models.PositiveSmallIntegerField(
+        verbose_name=_("Payment day"), choices=[(i, i) for i in range(1, 29)]
+    )
     rent = models.DecimalField(verbose_name=_("Rent"), max_digits=10, decimal_places=2, blank=True, null=True)
     charges = models.DecimalField(verbose_name=_("Charges"), max_digits=10, decimal_places=2, blank=True, null=True)
     others_payments = models.DecimalField(
         verbose_name=_("Others Payments"), max_digits=10, decimal_places=2, blank=True, null=True
     )
-    decription_others_payments = models.TextField(verbose_name=_("Description of Others Payments"), blank=True, null=True)
+    decription_others_payments = models.TextField(
+        verbose_name=_("Description of Others Payments"), blank=True, null=True
+    )
     tenants = models.ManyToManyField(verbose_name=_("Tenants"), to=Tenant, blank=True, related_name="tenancies")
     amount_repairs_by_landlord = models.DecimalField(
         verbose_name=_("Amount of repairs by landlord"), max_digits=10, decimal_places=2, blank=True, null=True
@@ -57,7 +65,9 @@ class Tenancy(BaseModel):
         verbose_name=_("Due notice day"),
         choices=[(i, i) for i in range(1, 29)],
         default=1,
-        help_text=_("This date defines the day of the month when the tenant must be informed of the amount due for the rent."),
+        help_text=_(
+            "This date defines the day of the month when the tenant must be informed of the amount due for the rent."
+        ),
     )
     text_receipt = models.TextField(
         verbose_name=_("Text of the receipt"),
