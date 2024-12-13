@@ -8,8 +8,8 @@ readme = "README.md"
 license = { text = "MIT" }
 dependencies = [
     "celery>=5.4.0",
-    "django>=5.1.3",
-    "django-cotton>=1.3.0",
+    "django>=5.1.4",
+    "django-cotton>=1.5.1",
     "django-countries>=7.6.1",
     "django-environ>=0.11.2",
     "django-phonenumber-field[phonenumberslite]>=8.0.0",
@@ -18,7 +18,7 @@ dependencies = [
     "Pillow>=11.0.0",
     "psycopg[binary]>=3.2.3",
     "simplesocialauthlib>=0.2.2",
-    "six>=1.16.0",
+    "six>=1.17.0",
     "whitenoise>=6.8.2"
 ]
 
@@ -31,7 +31,10 @@ dev = [
 lint = [
     "djade>=1.3.2",
     "pre-commit>=4.0.1",
-    "ruff>=0.7.4",
+    "ruff>=0.8.3",
+]
+test = [
+    "pytest-django>=4.9.0",
 ]
 
 [tool.pdm]
@@ -41,15 +44,13 @@ distribution = false
 newapp = "python src/manage.py startapp"
 makemigrations = "python src/manage.py makemigrations"
 migrate = "python src/manage.py migrate"
-dev = "python src/manage.py runserver"
-test = "python src/manage.py test -v 2"
+dev = "python src/manage.py runserver localhost:8000"
+test = "pytest"
 shell = "python src/manage.py shell"
 createsuperuser = "python src/manage.py createsuperuser --email=admin@example.com --first_name=Admin --last_name=AD"
 collectstatic = "python src/manage.py collectstatic"
 loaddata = "python src/manage.py loaddata"
 dumpdata = "python src/manage.py dumpdata"
-stripe_sync = "python src/manage.py djstripe_sync_models"
-tailwind = "pnpm run tailwind"
 rufffix = "ruff check --fix"
 ruffformat = "ruff format"
 ruffcheck = "ruff check"
@@ -58,6 +59,12 @@ exports = "pdm export -f requirements --without-hashes"
 docker = "docker compose up --build"
 mmm = { composite = ["makemigrations", "migrate"] }
 ruff = { composite = ["ruffformat", "rufffix"] }
+
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+DJANGO_SETTINGS_MODULE = "config.settings.testing"
+python_files = ["test*.py", "*test.py", "testing/python/*.py"]
 
 
 [tool.ruff]
