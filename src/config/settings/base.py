@@ -1,16 +1,16 @@
-import os
+import secrets
 
-from config.env import BASE_DIR, env
+from config.settings import BASE_DIR, env
 
-env.read_env(os.path.join(BASE_DIR - 1, ".env"))
+env.read_env(env_file=BASE_DIR.parent / ".env")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY", default=secrets.token_urlsafe(64))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=True)
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+ALLOWED_HOSTS = env.list(var="DJANGO_ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 
 
 # Application definition
@@ -55,7 +55,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, "templates"),
+            BASE_DIR / "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -95,7 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR - 1, "db.sqlite3"),
+        "NAME": BASE_DIR.parent / "db.sqlite3",
     }
 }
 
@@ -120,9 +120,9 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    BASE_DIR / "static",
 ]
 
 # Default primary key field type

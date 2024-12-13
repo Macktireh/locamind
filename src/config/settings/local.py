@@ -1,8 +1,7 @@
 import os
 
-from config.env import BASE_DIR, env
 from config.settings.base import *  # noqa: F403
-from config.settings.base import INSTALLED_APPS, MIDDLEWARE
+from config.settings.base import BASE_DIR, INSTALLED_APPS, MIDDLEWARE, env
 
 DEBUG = env.bool("DEBUG", default=True)
 
@@ -62,5 +61,3 @@ CACHES = {
 
 from config.settings.packages.celery import *  # noqa: F403, E402
 from config.settings.packages.debug_toolbar import *  # noqa: F403, E402
-
-print("local settings")

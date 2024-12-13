@@ -1,4 +1,4 @@
-from config.env import env
+from config.settings.base import env
 
 CELERY_BROKER_URL = env.str("REDIS_URL", "redis://redis:6379/0")
 
