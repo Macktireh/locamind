@@ -1,15 +1,23 @@
-from config.env import DjangoEnvironment, env
+from enum import Enum
+from pathlib import Path
 
-DJANGO_ENVIRONMENT = env.str("DJANGO_ENVIRONMENT", DjangoEnvironment.LOCAL)
+import environ
+from django.core.exceptions import ImproperlyConfigured
 
+env = environ.Env()
 
-if DJANGO_ENVIRONMENT == DjangoEnvironment.PRODUCTION:
-    from config.settings.production import *  # noqa: F403
-elif DJANGO_ENVIRONMENT == DjangoEnvironment.TESTING:
-    from config.settings.testing import *  # noqa: F403
-else:
-    from config.settings.local import *  # noqa: F403
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-print("DEBUG MODE: ", DEBUG)
-print("DJANGO_ENVIRONMENT: ", DJANGO_ENVIRONMENT)
+class DjangoEnvironment(str, Enum):
+    LOCAL = "local"
+    TESTING = "testing"
+    PRODUCTION = "production"
+
+
+def env_to_enum(enum_cls: DjangoEnvironment, value: str) -> str:
+    for x in enum_cls:
+        if x.value == value:
+            return x
+
+    raise ImproperlyConfigured(f"Env value {repr(value)} could not be found in {repr(enum_cls)}")

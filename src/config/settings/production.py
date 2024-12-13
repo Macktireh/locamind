@@ -1,5 +1,5 @@
-from config.env import env
 from config.settings.base import *  # noqa: F403
+from config.settings.base import env
 
 DEBUG = env.bool("DEBUG", default=False)
 
@@ -23,8 +23,7 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        # "LOCATION": "redis://username:password@127.0.0.1:6379",
-        "LOCATION": env("REDIS_URL"),  # noqa: E501
+        "LOCATION": env("REDIS_URL"),
     }
 }
 
@@ -43,5 +42,3 @@ CLOUDINARY_STORAGE = {
     "API_KEY": env("CLOUDINARY_API_KEY"),
     "API_SECRET": env("CLOUDINARY_API_SECRET"),
 }
-
-print("production settings")
