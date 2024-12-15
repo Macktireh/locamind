@@ -4,5 +4,5 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-cd src/
-exec celery -A config beat -l INFO
+# cd src/
+exec python -m celery -A config worker -l INFO

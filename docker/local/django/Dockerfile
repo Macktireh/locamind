@@ -1,25 +1,33 @@
 ARG PYTHON_BASE=3.12-slim
 
+# build stage
 FROM python:$PYTHON_BASE AS builder
 
-# set work directory
 WORKDIR /project
 
-# set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
+# install PDM
+RUN pip install -U pdm
+ENV PDM_CHECK_UPDATE=false
 
-# install python dependencies
-COPY ./requirements requirements/
-RUN pip install -r requirements/dev.txt
+COPY pyproject.toml pyproject.toml
+COPY pdm.lock pdm.lock
 
+# install dependencies and project into the local packages directory
+RUN pdm install --check
 
+# final stage
+FROM python:$PYTHON_BASE
+
+WORKDIR /project
+
+COPY --from=builder project/.venv /.venv
+ENV PATH=/.venv/bin:$PATH
+ENV PYTHONPATH=/project/src
+
+# copy project files to container
 COPY ./docker/local/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
@@ -39,9 +47,6 @@ RUN chmod +x /start-celerybeat
 COPY ./docker/local/django/celery/flower/start /start-flower
 RUN sed -i 's/\r$//g' /start-flower
 RUN chmod +x /start-flower
-
-
-COPY . .
 
 
 ENTRYPOINT ["/entrypoint"]
