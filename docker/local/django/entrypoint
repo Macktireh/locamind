@@ -15,13 +15,21 @@ import os
 import psycopg
 
 try:
-    psycopg.connect(
-        dbname="${DB_NAME}",
-        user="${DB_USER}",
-        password="${DB_PASSWORD}",
-        host="${DB_HOST}",
-        port="${DB_PORT}",
-    )
+    if "postgres" in "${DB_CONNECTION:-}":
+        psycopg.connect(
+            dbname="${DB_NAME:-}",
+            user="${DB_USER:-}",
+            password="${DB_PASSWORD:-}",
+            host="${DB_HOST:-}",
+            port="${DB_PORT:-}",
+        )
+        print()
+        print("✅ PostgreSQL is ready!")
+        print()
+    else:
+        print()
+        print("✅ Using default database sqllite")
+        print()
 except psycopg.OperationalError:
     sys.exit(-1)
 sys.exit(0)
@@ -38,8 +46,11 @@ import os
 import redis
 
 try:
-    r = redis.from_url("${REDIS_URL}")
+    r = redis.from_url("${REDIS_URL:-}")
     r.ping()
+    print()
+    print("✅ Redis is ready!")
+    print()
 except redis.exceptions.ConnectionError:
     sys.exit(-1)
 sys.exit(0)
@@ -53,8 +64,6 @@ until postgres_ready; do
   sleep 1
 done
 
->&2 echo '✅ PostgreSQL is ready!'
-
 # We wait until the Redis server is ready and the redis_ready function
 # returns the value 0 (synonymous with success)
 until redis_ready; do
@@ -62,7 +71,6 @@ until redis_ready; do
   sleep 1
 done
 
->&2 echo '✅ Redis is ready!'
 
 # Execution of the /start file received in parameter
 exec "$@"

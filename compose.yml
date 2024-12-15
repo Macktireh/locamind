@@ -64,7 +64,7 @@ services:
       - 5555:5555
     command: /start-flower
     depends_on:
-      - django
       - redis
+      - django
       - celeryworker
       - celerybeat
